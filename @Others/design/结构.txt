@@ -1,0 +1,10 @@
+--开始
+    |-- exe文件
+    |-- readme.txt
+    |-- Default
+        |-- 默认位置: Location.txt        init: .//
+        |-- 默认密码1: Password1.txt       init: a123
+        |-- 默认密码2: Password2.txt       init: a123
+    |-- workspace
+        |-- ...
+    
