@@ -77,6 +77,16 @@ class CompressFrame(Frame):
             row=row, column=3)
 
         row += 1
+        Label(self, text="路径选择 : ").grid(row=row, sticky=E, padx=10)
+        # ttk combox
+        self.LocationCBox = ttk.Combobox(self, state='readonly')
+        self.LocationCBox['values'] = (
+            "选择存储的路径", *[f"{a} : {b}" for a,b in self.LocationDict.items()])
+        self.LocationCBox.current(0)
+        self.LocationCBox.bind('<<ComboboxSelected>>', self.retLocation)
+        self.LocationCBox.grid(row=row, column=1, pady=10,sticky=EW,padx=10)
+
+        row += 1
         Label(self, text="解压文件名").grid(row=row, sticky=W, padx=10)
 
         row += 1
@@ -105,11 +115,11 @@ class CompressFrame(Frame):
         self.passwordCBox = ttk.Combobox(self, width=25, state='readonly')
         self.passwordCBox['values'] = (
             "选择存储的密码", *list(
-                map(lambda o: f"name=\"{o[0]}\": {o[1].password1} {o[1].password2}",
+                map(lambda o: f"{o[0]} : {o[1].password1} {o[1].password2}",
                     self.passwordDict.items())))
         self.passwordCBox.current(0)
         self.passwordCBox.bind('<<ComboboxSelected>>', self.retPassword)
-        self.passwordCBox.grid(row=row, column=1, pady=10)
+        self.passwordCBox.grid(row=row, column=1, pady=10,padx=10)
 
         row += 1
         Button(self, text="Submit", command=self.submit, width=30).grid(
@@ -231,6 +241,13 @@ class CompressFrame(Frame):
                 self.passwordCBox.current()-1]]
             self.password1.set(s.password1)
             self.password2.set(s.password2)
+
+    def retLocation(self, *args):
+        "从cbox处获得Location并set"
+        if self.LocationCBox.current() > 0:
+            s = self.LocationDict[tuple(self.LocationDict.keys())[
+                self.LocationCBox.current()-1]]
+            self.ToDirname.set(s)
 
     def submit(self):
         """
