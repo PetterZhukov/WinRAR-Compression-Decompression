@@ -15,7 +15,7 @@
 - [ ] 设置addName
 - [ ] 根据后缀前面几个字智能判断文件类型
 - [ ] 初始页面 init workspace
-- [ ] 使用github上传
+- [x] 使用github上传  -> 码云
 - [ ] git删除大文件
 - [ ] 总体使用一遍git
 - [ ] 更改为下拉框选择默认路径，json结构 -> ttk , 文件存储,constValue
@@ -35,6 +35,8 @@
     - [ ] 重写 compress和decompress
     - [ ] 修改 FirstPage
     - [ ] 补上comments
+    - [ ] 重新读写json要刷新其他读取json的页面 ->手动刷新 / 每次打开都自动刷新
+- [ ] 码云的拉取失败了，怎么以本地为主创建仓库
 
 # 注意事项
  - [ ] 更新init

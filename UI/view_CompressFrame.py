@@ -5,11 +5,10 @@ from tkinter import *
 from tkinter.messagebox import showinfo
 
 import constValue.constValue as const
-from fileIO.fileIO import PasswordJson
 import functionModel.CompressModel as CM
 from fileIO.fileStructure import getStrOfFilePath, openFileInOS
 from functionModel.checkModel import creatCheckStr
-
+import fileIO.fileIO as fileIO
 
 class CompressFrame(Frame):
 
@@ -24,7 +23,8 @@ class CompressFrame(Frame):
 
         self.FromIsFile = BooleanVar()
 
-        self.passwordDict = PasswordJson.getPasswordLoad_byFile()
+        self.passwordDict = fileIO.PasswordJson.getPasswordLoad_byFile()
+        self.LocationDict = fileIO.LocationJson.getLocationLoad_byFile()
         self.creatPage()
 
     def creatPage(self):
@@ -192,9 +192,10 @@ class CompressFrame(Frame):
         "可视化获取文件夹名"
         if self.checkFrom() == None:
             key = os.path.split(self.From.get())[0]
+            return os.path.normpath(tkinter.filedialog.askdirectory(initialdir=key))+'\\'
         else:
-            key = './/'
-        return os.path.normpath(tkinter.filedialog.askdirectory(initialdir=key))+'\\'
+            return os.path.normpath(tkinter.filedialog.askdirectory())+'\\'
+        
 
     def previewFromLocation(self):
         "预览from"
@@ -221,8 +222,7 @@ class CompressFrame(Frame):
 
     def ReadDefaultLocation(self):
         "读默认地址"
-        with open(const.DefaultLocationPath, 'r') as f:
-            self.ToDirname.set(f.readline())
+        self.LocationDict.get(const.Location_defaultName,"")
 
     def retPassword(self, *args):
         "从cbox处获得password并set"

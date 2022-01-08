@@ -25,7 +25,7 @@ firstPageName_Origin="Origin"
 firstPageName_Compress="Compress"
 firstPageName_DeCompress="DeCompress"
 "json_Location"
-Location_defaultName="Defualt"
+Location_defaultName="Default"
 
 
 

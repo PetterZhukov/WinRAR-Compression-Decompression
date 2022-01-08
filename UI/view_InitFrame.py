@@ -65,13 +65,12 @@ class InitFrame(Frame):
                ).grid(
             row=row, column=0, stick=W, pady=2)
 
-        row += 1
         Button(self, text="初始化路径设置",
                command=lambda:
                initModel.initFile_Location() if
                tkinter.messagebox.askokcancel("警告", "存储的路径都会被初始化，是否继续?") else None
                ).grid(
-            row=row, column=0, stick=W, pady=2)
+            row=row, column=1, stick=W, pady=2,padx=10)
 
         row += 1
         Button(self, text="初始化其他设置",
@@ -87,7 +86,7 @@ class InitFrame(Frame):
                initModel.initFileStructure_AllFile() if
                tkinter.messagebox.askokcancel("警告", "存储的所有的设置都会被初始化，是否继续?") else None
                ).grid(
-            row=row, column=0, stick=W, pady=2)
+            row=row, column=0, stick=W, pady=2,columnspan=2,sticky=EW)
 
         row += 1
         ttk.Separator(self, orient='horizontal').grid(
@@ -114,7 +113,7 @@ class InitFrame(Frame):
             row=row, column=0, stick=W, pady=2)
         Button(self, text="预览位置", command=lambda:tkinter.filedialog.askdirectory(initialdir=const.outputPath)
                ).grid(
-            row=row, column=1, padx=10)
+            row=row, column=1, sticky=W)
         # row += 1
         # Button(self, text="init readme.txt", command=self.init_readme).grid(
         #     row=row, stick=W, pady=2)
