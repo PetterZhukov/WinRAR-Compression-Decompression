@@ -1,17 +1,11 @@
 import os
-from tkinter import ttk
-import tkinter.filedialog
 from tkinter import *
+from tkinter import ttk
 from tkinter.ttk import Combobox
 import tkinter.messagebox
 
-
 import constValue.constValue as const
-import constValue.readme as readme
-import fileIO.fileDel as fileDel
 
-import functionModel.initModel as initModel
-import fileIO.fileStructure as fileStructure
 import fileIO.fileIO as fileIO
 
 
@@ -22,8 +16,8 @@ class EditLocationFrame(Frame):
 
         self.LocationName = StringVar()
         self.LocationIn = StringVar()
-        self.ModelName=StringVar()
-        
+        self.ModelName = StringVar()
+
         self.creatPage()
         self.setModel_CompressFrom()
 
@@ -35,15 +29,15 @@ class EditLocationFrame(Frame):
         "修改地址 : xxxxxx"
         Label(self, textvariable=self.ModelName,
               font=('宋体', 20, 'bold'))\
-            .grid(row=row, column=0,columnspan=4)
+            .grid(row=row, column=0, columnspan=4)
 
         row += 1
         ttk.Separator(self, orient='horizontal').grid(
             row=row, column=0, rowspan=1, columnspan=4, sticky='EW', pady=5, padx=5)
 
-        row+=1
-        selectF=Frame(self)
-        selectF.grid(row=row,column=0,columnspan=4,pady=10)
+        row += 1
+        selectF = Frame(self)
+        selectF.grid(row=row, column=0, columnspan=4, pady=10)
         Button(selectF, text="修改'从...压缩'路径", command=self.setModel_CompressFrom).grid(
             row=0, column=0, padx=10)
         Button(selectF, text="修改'压缩到/从...解压'路径", command=self.setModel_CompressTo).grid(
@@ -68,7 +62,7 @@ class EditLocationFrame(Frame):
             row=row, column=1, stick=W, pady=5, padx=5)
         row += 1
         Label(self, text="增加", font=('宋体', 13, 'bold')).grid(
-            row=row, sticky=E,padx=35)
+            row=row, sticky=E, padx=35)
 
         row += 1
         Label(self, text="路径名字(不能重复) : ").grid(row=row, sticky=E)
@@ -92,9 +86,9 @@ class EditLocationFrame(Frame):
 
     def previewToLocation(self):
         "预览输入框网址"
-        if self.LocationIn.get()!="":
+        if self.LocationIn.get() != "":
             self.LocationIn.set(os.path.normpath(
-            tkinter.filedialog.askdirectory(initialdir=self.LocationIn.get))+'\\')
+                tkinter.filedialog.askdirectory(initialdir=self.LocationIn.get))+'\\')
         else:
             self.LocationIn.set(os.path.normpath(
                 tkinter.filedialog.askdirectory())+'\\')
@@ -104,8 +98,8 @@ class EditLocationFrame(Frame):
         if tkinter.messagebox.askokcancel("提示", "确认要提交删除？"):
             index = self.LocationCBox.current()
             keyName = list(self.LocationDict.keys())[index]
-            if keyName==const.Location_defaultName:
-                tkinter.messagebox.showerror("警告","不能更改默认值")
+            if keyName == const.Location_defaultName:
+                tkinter.messagebox.showerror("警告", "不能更改默认值")
             else:
                 self.LocationDict.pop(keyName)
                 self.update_LocationJson()
@@ -146,20 +140,20 @@ class EditLocationFrame(Frame):
     def setModel_CompressFrom(self):
         "将模式更改为 CompressFrom"
         self.ModelName.set("修改路径 : 从...压缩")
-        self.getLocationdictFun=fileIO.LocationJson.getCompressFrom
-        self.setLocationjsonFun=fileIO.LocationJson.setCompressFrom
+        self.getLocationdictFun = fileIO.LocationJson.getCompressFrom
+        self.setLocationjsonFun = fileIO.LocationJson.setCompressFrom
         self.update_LocationCBox()
-    
+
     def setModel_CompressTo(self):
         "将模式更改为 CompressTo"
         self.ModelName.set("修改路径 : 压缩到.../从...解压")
-        self.getLocationdictFun=fileIO.LocationJson.getCompressTo
-        self.setLocationjsonFun=fileIO.LocationJson.setCompressTo
+        self.getLocationdictFun = fileIO.LocationJson.getCompressTo
+        self.setLocationjsonFun = fileIO.LocationJson.setCompressTo
         self.update_LocationCBox()
-    
+
     def setModel_DeCompressTo(self):
         "将模式更改为 DeCompressTo"
         self.ModelName.set("修改路径 : 解压到...")
-        self.getLocationdictFun=fileIO.LocationJson.getDeCompressTo
-        self.setLocationjsonFun=fileIO.LocationJson.setDeCompressFrom
+        self.getLocationdictFun = fileIO.LocationJson.getDeCompressTo
+        self.setLocationjsonFun = fileIO.LocationJson.setDeCompressFrom
         self.update_LocationCBox()

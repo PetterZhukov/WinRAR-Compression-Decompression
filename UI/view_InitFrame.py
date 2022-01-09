@@ -1,18 +1,14 @@
 import os
-from tkinter import ttk
+import tkinter.ttk
 import tkinter.filedialog
 from tkinter import *
-from tkinter.ttk import Combobox
 import tkinter.messagebox
 
 
 import constValue.constValue as const
-import constValue.readme as readme
-import fileIO.fileDel as fileDel
-from fileIO.fileIO import LocationJson, PasswordJson, writeStrToFile
 import functionModel.initModel as initModel
 import fileIO.fileStructure as fileStructure
-from classDesign.password import password
+import fileIO.fileIO as fileIO
 
 
 class InitFrame(Frame):
@@ -23,7 +19,7 @@ class InitFrame(Frame):
         self.passwordName = StringVar()
         self.password1 = StringVar()
         self.password2 = StringVar()
-        self.passwordDict = PasswordJson.getPasswordLoad_byFile()
+        self.passwordDict = fileIO.PasswordJson.getPasswordLoad_byFile()
 
         self.creatPage()
 
@@ -37,7 +33,7 @@ class InitFrame(Frame):
             .grid(row=row, column=0)
 
         row += 1
-        ttk.Separator(self, orient='horizontal').grid(
+        tkinter.ttk.Separator(self, orient='horizontal').grid(
             row=row, column=0, rowspan=1, columnspan=4, sticky='EW', pady=5, padx=5)
 
         row += 1
@@ -50,7 +46,7 @@ class InitFrame(Frame):
             row=row, column=0, stick=W, pady=2)
 
         row += 1
-        ttk.Separator(self, orient='horizontal').grid(
+        tkinter.ttk.Separator(self, orient='horizontal').grid(
             row=row, column=0, rowspan=1, columnspan=4, sticky='EW', pady=5, padx=5)
 
         row += 1
@@ -70,7 +66,7 @@ class InitFrame(Frame):
                initModel.initFile_Location() if
                tkinter.messagebox.askokcancel("警告", "存储的路径都会被初始化，是否继续?") else None
                ).grid(
-            row=row, column=1, stick=W, pady=2,padx=10)
+            row=row, column=1, stick=W, pady=2, padx=10)
 
         row += 1
         Button(self, text="初始化其他设置",
@@ -86,10 +82,10 @@ class InitFrame(Frame):
                initModel.initFileStructure_AllFile() if
                tkinter.messagebox.askokcancel("警告", "存储的所有的设置都会被初始化，是否继续?") else None
                ).grid(
-            row=row, column=0, stick=W, pady=2,columnspan=2,sticky=EW)
+            row=row, column=0, stick=W, pady=2, columnspan=2, sticky=EW)
 
         row += 1
-        ttk.Separator(self, orient='horizontal').grid(
+        tkinter.ttk.Separator(self, orient='horizontal').grid(
             row=row, column=0, rowspan=1, columnspan=4, sticky='EW', pady=5, padx=5)
 
         row += 1
@@ -111,10 +107,9 @@ class InitFrame(Frame):
                tkinter.messagebox.askokcancel("警告", "输出区的文件将被清空，是否继续?") else None
                ).grid(
             row=row, column=0, stick=W, pady=2)
-        Button(self, text="预览位置", command=lambda:tkinter.filedialog.askdirectory(initialdir=const.outputPath)
+        Button(self, text="预览位置", command=lambda: tkinter.filedialog.askdirectory(initialdir=const.outputPath)
                ).grid(
             row=row, column=1, sticky=W)
-
 
     def init_readme_open(self):
         "init readme 并在os中打开"

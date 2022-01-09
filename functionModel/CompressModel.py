@@ -5,7 +5,6 @@ import constValue.comments as Comments
 import constValue.constValue as const
 import fileIO.fileStructure as fileStruct
 
-import functionModel.checkModel as checkModel
 
 
 def rar_compress(key, From: str, To: str, password: str = 'a123'):

@@ -1,16 +1,10 @@
 import os
-from tkinter import ttk
-import tkinter.filedialog
 from tkinter import *
+from tkinter import ttk
 from tkinter.ttk import Combobox
 import tkinter.messagebox
 
-
 import constValue.constValue as const
-import constValue.readme as readme
-import fileIO.fileDel as fileDel
-import functionModel.initModel as initModel
-import fileIO.fileStructure as fileStructure
 from classDesign.password import password
 import fileIO.fileIO as fileIO
 

@@ -2,7 +2,6 @@ import os.path
 import tkinter.filedialog
 from tkinter import *
 from tkinter import ttk
-from tkinter.messagebox import askokcancel, showinfo
 import tkinter.messagebox
 
 import constValue.constValue as const
@@ -142,9 +141,9 @@ class DeCompressFrame(Frame):
         "从被压缩文件处获得文件名"
         num = os.path.split(self.From.get())
         if self.From.get() == "":
-            showinfo(title="警告", message="未填写被压缩路径")
+            tkinter.messagebox.showinfo(title="警告", message="未填写被压缩路径")
         elif len(num) < 2:
-            showinfo(title="警告", message="被压缩路径格式错误")
+            tkinter.messagebox.showinfo(title="警告", message="被压缩路径格式错误")
         else:
             self.ToFilename.set(os.path.splitext(num[1])[0])
 
@@ -251,19 +250,19 @@ class DeCompressFrame(Frame):
             const.Location_defaultName, ""))
 
     def special_getPasswordFromName(self):
-        if askokcancel("警告", "命名格式符合标准的才可以读取,是否继续?"):
+        if tkinter.messagebox.askokcancel("警告", "命名格式符合标准的才可以读取,是否继续?"):
             name = os.path.split(os.path.splitext(self.From.get())[0])[-1]
             if len(name.split()) <= 3:
-                showinfo("警告", "命名不符合标准格式，可能被改动或不是本程序产生")
+                tkinter.messagebox.showinfo("警告", "命名不符合标准格式，可能被改动或不是本程序产生")
             else:
                 checkStr = name.split()[-3]
                 if not checkModel.judgeCheckStr(checkStr):
-                    showinfo("警告", "命名不符合标准格式，可能被改动或不是本程序产生")
+                    tkinter.messagebox.showinfo("警告", "命名不符合标准格式，可能被改动或不是本程序产生")
                 else:
                     p1, p2 = name.split()[-2:]
                     self.password1.set(p1)
                     self.password2.set(p2)
-                    showinfo("提示", "更新密码成功")
+                    tkinter.messagebox.showinfo("提示", "更新密码成功")
 
     def retLocationDeCompressFrom(self, *args):
         "从cbox处获得LocationDeCompressFrom并set"
@@ -328,19 +327,19 @@ class DeCompressFrame(Frame):
         """
         ret = self.checkPasswordNULL()
         if ret != None:
-            showinfo(title="警告", message=ret)
+            tkinter.messagebox.showinfo(title="警告", message=ret)
             return
         if not self.checkPasswordSpace_change():
-            showinfo(
+            tkinter.messagebox.showinfo(
                 title="警告", message="密码中含有空格，已自动替换成'_'")
             return
         ret = self.checkFrom()
         if ret != None:
-            showinfo(title="警告", message=ret)
+            tkinter.messagebox.showinfo(title="警告", message=ret)
             return
         ret = self.checkTo()
         if ret != None:
-            showinfo(title="警告", message=ret)
+            tkinter.messagebox.showinfo(title="警告", message=ret)
             return
         print(
             f" submit _compress {(self.From.get(),self.ToDirname.get(),self.ToFilename.get())}")
@@ -352,4 +351,4 @@ class DeCompressFrame(Frame):
                 print(getStrOfFilePath(ret))
                 openFileInOS(ret)
         else:
-            showinfo("error", ret)
+            tkinter.messagebox.showinfo("error", ret)

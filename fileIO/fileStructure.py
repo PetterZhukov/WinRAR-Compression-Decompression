@@ -1,7 +1,4 @@
 import os
-import constValue.constValue as const
-from fileIO.fileIO import FlagJson, LocationJson, writeStrToFile
-import constValue.readme as readme
 import datetime
 
 import functionModel.initModel as initModel

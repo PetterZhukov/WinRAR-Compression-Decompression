@@ -1,19 +1,15 @@
-from io import FileIO
 import os
-from tkinter import font, ttk
-import tkinter.filedialog
+
 from tkinter import *
-from tkinter.ttk import Combobox
+import tkinter.ttk
+import tkinter.filedialog
 import tkinter.messagebox
 
 import fileIO.fileIO as fileIO
 import constValue.constValue as const
 import constValue.readme as readme
-import fileIO.fileDel as fileDel
-from fileIO.fileIO import LocationJson, LocationJson, writeStrToFile
 import functionModel.initModel as initModel
 import fileIO.fileStructure as fileStructure
-from classDesign.password import password
 
 
 class OriginFrame(Frame):
@@ -31,7 +27,7 @@ class OriginFrame(Frame):
               font=('宋体', 20, 'bold'))\
             .grid(row=row, column=0)
         row += 1
-        ttk.Separator(self, orient='horizontal').grid(
+        tkinter.ttk.Separator(self, orient='horizontal').grid(
             row=row, column=0, rowspan=1, columnspan=4, sticky='EW', pady=5, padx=5)
 
         row += 1
@@ -44,7 +40,7 @@ class OriginFrame(Frame):
         Text1['state'] = 'disabled'
 
         row += 4
-        ttk.Separator(self, orient='horizontal').grid(
+        tkinter.ttk.Separator(self, orient='horizontal').grid(
             row=row, column=0, rowspan=1, columnspan=5, sticky='EW', pady=20)
 
         row += 1
@@ -56,7 +52,7 @@ class OriginFrame(Frame):
                command=self.define_WinRar).grid(row=row, stick=W, pady=2)
 
         row += 1
-        ttk.Separator(self, orient='horizontal').grid(
+        tkinter.ttk.Separator(self, orient='horizontal').grid(
             row=row, column=0, rowspan=1, columnspan=5, sticky='EW', pady=20)
 
         row += 1
@@ -74,7 +70,7 @@ class OriginFrame(Frame):
             row=row, column=0, stick=W, pady=2, sticky=EW)
 
         row += 1
-        ttk.Separator(self, orient='horizontal').grid(
+        tkinter.ttk.Separator(self, orient='horizontal').grid(
             row=row, column=0, rowspan=1, columnspan=5, sticky='EW', pady=20)
 
         row += 1

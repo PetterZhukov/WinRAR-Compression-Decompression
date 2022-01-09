@@ -1,16 +1,15 @@
 import os.path
-from posixpath import abspath
-from tkinter import ttk
-from tkinter import messagebox
-import tkinter.filedialog
+
 from tkinter import *
-from tkinter.messagebox import showinfo
 import tkinter.messagebox
+from tkinter import ttk
+import tkinter.filedialog
+
 
 import constValue.constValue as const
 import functionModel.CompressModel as CM
 from fileIO.fileStructure import getStrOfFilePath, openFileInOS
-from functionModel.checkModel import creatCheckStr
+import functionModel.checkModel as  checkModel
 import fileIO.fileIO as fileIO
 
 
@@ -142,12 +141,13 @@ class CompressFrame(Frame):
     def getFromDirname(self):
         "从被压缩文件处获得文件名"
         if(self.From.get() == ''):
-            showinfo(title="警告", message="未填写被压缩路径")
+            tkinter.messagebox.showinfo(title="警告", message="未填写被压缩路径")
         else:
             if self.FromIsFile.get():
                 num = os.path.split(self.From.get())
                 if len(num) < 2:
-                    showinfo(title="警告", message="被压缩路径格式错误")
+                    tkinter.messagebox.showinfo(
+                        title="警告", message="被压缩路径格式错误")
                 else:
                     self.ToFilename.set(os.path.splitext(num[1])[0])
             else:
@@ -332,28 +332,28 @@ class CompressFrame(Frame):
         """
         ret = self.checkPasswordNULL()
         if ret != None:
-            showinfo(title="警告", message=ret)
+            tkinter.messagebox.showinfo(title="警告", message=ret)
             return
         if not self.checkPasswordSpace_change():
-            showinfo(
+            tkinter.messagebox.showinfo(
                 title="警告", message="密码中含有空格，已自动替换成'_'")
             return
         ret = self.checkFrom()
         if ret != None:
-            showinfo(title="警告", message=ret)
+            tkinter.messagebox.showinfo(title="警告", message=ret)
             return
         ret = self.checkTo()
         if ret != None:
-            showinfo(title="警告", message=ret)
+            tkinter.messagebox.showinfo(title="警告", message=ret)
             return
         print(
             f" submit _compress {(self.From.get(),self.ToDirname.get(),self.ToFilename.get())}")
 
         succeed, ret = CM.Compress().work(
             self.From.get(), self.ToDirname.get(),
-            self.ToFilename.get(), self.password1.get(), self.password2.get(), creatCheckStr())
+            self.ToFilename.get(), self.password1.get(), self.password2.get(), checkModel.creatCheckStr())
         if succeed:
             print(getStrOfFilePath(ret))
             openFileInOS(ret)
         else:
-            showinfo("error", ret)
+            tkinter.messagebox.showinfo("error", ret)

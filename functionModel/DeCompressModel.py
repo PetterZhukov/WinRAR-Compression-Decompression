@@ -3,8 +3,6 @@ import os
 import constValue.constValue as const
 import fileIO.fileStructure as fileStruct
 
-import functionModel.checkModel as checkModel
-import functionModel.initModel as initModel
 import fileIO.fileDel as fileDel
 
 def rar_DeCompress(From: str, To: str, password: str = 'a123'):
