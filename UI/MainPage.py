@@ -14,7 +14,7 @@ from fileIO.fileIO import FlagJson
 class MainPage:
     def __init__(self, root) -> None:
         self.root = root
-        self.root.geometry('600x500+500+240')
+        self.root.geometry('600x550+500+240')
 
         self.page = Frame(self.root)
         self.page.pack()
@@ -51,7 +51,7 @@ class MainPage:
     def __initPage(self):
         self.OriginPage = OriginFrame(self.root)
         self.InitPage = InitFrame(self.root)
-        # self.DeCompressPage = DeCompressFrame(self.root)
+        self.DeCompressPage = DeCompressFrame(self.root)
         self.CompressPage = CompressFrame(self.root)
         self.EditPasswordPage = EditPasswordFrame(self.root)
         self.EditLocationPage = EditLocationFrame(self.root)
@@ -62,7 +62,7 @@ class MainPage:
             const.firstPageName_EditLocation: self.EditLocationPage,
             const.firstPageName_EditPassword: self.EditPasswordPage,
             const.firstPageName_Compress: self.CompressPage,
-            # const.firstPageName_DeCompress: self.DeCompressPage
+            const.firstPageName_DeCompress: self.DeCompressPage
         }
 
     def openPage(self, page):

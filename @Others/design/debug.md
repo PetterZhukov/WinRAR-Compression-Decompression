@@ -39,9 +39,13 @@
     - [ ] Location分为 CompressFrom,CompressTo,DeCompressTo
     - [ ] 修改路径/密码的条得可编辑且够长够宽
     - [x] 保护default
-    - [ ] data_output分为解压和压缩
+    - [x] data_output分为解压和压缩
     - [ ] 修改flag
-    - [ ] 
+    - [ ] password 也先更新json然后从json拿取
+    - [ ] 压缩到的路径应该是Compress
+    - [ ] Decompress也需要分可视化get
+    - [x] Compress 默认位置失灵
+    - [x] 调整页面大小
 - [ ] 码云的拉取失败了，怎么以本地为主创建仓库
 
 # 注意事项

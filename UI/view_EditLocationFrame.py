@@ -108,8 +108,8 @@ class EditLocationFrame(Frame):
                 tkinter.messagebox.showerror("警告","不能更改默认值")
             else:
                 self.LocationDict.pop(keyName)
-                self.update_LocationCBox()
                 self.update_LocationJson()
+                self.update_LocationCBox()
                 tkinter.messagebox.showinfo("提示", "删除成功")
 
     def add_Location(self):

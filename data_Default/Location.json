@@ -1,1 +1,14 @@
-{"Default": ".//data_output", "\u8def\u5f841": "D:\\\u8fc5\u96f7\u4e91\u76d8\\", "\u8def\u5f842": "D:\\\u8fc5\u96f7\u4e91\u76d8\\\u4e91\u76d8\u7f13\u5b58\\", "\u8def\u5f843": "D:\\\u56fe\u7247-\u6536\u85cf\\", "\u8def\u5f844": "C:\\Users\\Zhukov\\Desktop\\Code\\VS Code\\\u65e5\u5e38\u7528 py\\python\u89e3\u538bzip\\example_try_rar\\", "CompressTo": {"Default": ".//data_output//DeCompress//", "\u8def\u5f841": "C:\\Users\\Zhukov\\Desktop\\Code\\VS Code\\\u65e5\u5e38\u7528 py\\python\u89e3\u538bzip\\unrar_example\\save\\", "\u8def\u5f842": "123"}, "DeCompressTo": {"Default": ".//data_output//DeCompress//", "\u8def\u5f841": "123"}}
+{
+    "CompressTo": {
+        "Default": ".//data_output//DeCompress//",
+        "\u8def\u5f843": "CompressTo_DeCompressFrom"
+    },
+    "DeCompressTo": {
+        "Default": ".//data_output//DeCompress//",
+        "\u8def\u5f841": "DeCompressTo"
+    },
+    "CompressFrom": {
+        "Default": ".//data_output//DeCompress//",
+        "\u8def\u5f841": "CompressFrom"
+    }
+}
