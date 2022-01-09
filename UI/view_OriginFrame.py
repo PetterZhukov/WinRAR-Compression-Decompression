@@ -50,7 +50,7 @@ class OriginFrame(Frame):
 
         row += 1
         Button(self, text="define WinRar and Rar",
-               command=self.define_WinRar).grid(row=row, stick=W, pady=2)
+               command=self.define_WinRar).grid(row=row, stick=EW, pady=2)
 
         row += 1
         tkinter.ttk.Separator(self, orient='horizontal').grid(
@@ -80,7 +80,7 @@ class OriginFrame(Frame):
 
         row += 1
         Button(self, text="查看说明文档readme", command=self.init_readme_open).grid(
-            row=row, column=0, stick=W, pady=2)
+            row=row, column=0, stick=EW, pady=2)
 
     def define_WinRar(self):
         "define the install and path of Winrar and rar"

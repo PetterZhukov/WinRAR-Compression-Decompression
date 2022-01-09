@@ -14,7 +14,7 @@
 - [ ] 显示/不显示命令行
 - [ ] 设置addName
 - [ ] 根据后缀前面几个字智能判断文件类型
-- [ ] 初始页面 init workspace
+- [x] 初始页面 init workspace
 - [x] 使用github上传  -> 码云
 - [x] git删除大文件 -> 直接把.git删了
 - [ ] 总体使用一遍git
@@ -54,6 +54,7 @@
     - [x] 单独的初始化小程序
     - [x] DeCompress的cbox名字改成passwordCBox
 - [ ] 码云的拉取失败了，怎么以本地为主创建仓库
+- [ ] 整理test文件夹
 
 # 注意事项
  - [ ] 更新init
