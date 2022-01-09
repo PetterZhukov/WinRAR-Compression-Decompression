@@ -10,36 +10,46 @@ FlagPath = join(DefaultPath, "Flag.json")
 "workspace dir"
 workspacePath = './/data_workspace//'
 "output dir  --存储解压解压和压缩结果"
-outputPath='.//data_output'
+outputPath = './/data_output//'
+outputCompressPath=join(outputPath,'Compress//')
+outputDeCompressPath=join(outputPath,'DeCompress//')
 "read me"
-readmePath=".//readme.txt"
+readmePath = ".//readme.txt"
 
 "json"
 "json_password"
+"       value"
 password_defulatName = "Default"
 "json_flag"
 flag_firstOpenName = "FirstOpen"
 flag_firstPageName = "FirstPage"
 "       value"
-firstPageName_Origin="OriginPage"
-firstPageName_Init="InitPage"
-firstPageName_EditLocation="EditLocationPage"
-firstPageName_EditPassword="EditPasswordPage"
-firstPageName_Compress="CompressPage"
-firstPageName_DeCompress="DeCompressPage"
+firstPageName_Origin = "OriginPage"
+firstPageName_Init = "InitPage"
+firstPageName_EditLocation = "EditLocationPage"
+firstPageName_EditPassword = "EditPasswordPage"
+firstPageName_Compress = "CompressPage"
+firstPageName_DeCompress = "DeCompressPage"
 "json_Location"
-Location_defaultName="Default"
-
-
+Location_CompressFromName = "CompressFrom"
+Location_CompressToName = "CompressTo"
+Location_DeCompressFromName = "DeCompressFrom"
+Location_DeCompressToName = "DeCompressTo"
+"       value"
+Location_defaultName = "Default"
 
 
 "默认 select_fileStructure"
 "   默认地址"
-DefaultLocation = ".//data_output"
+DefaultLocation_CompressFrom = {Location_defaultName:outputDeCompressPath}
+DefaultLocation_CompressTo = {Location_defaultName:outputCompressPath}
+DefaultLocation_CompressFrom = DefaultLocation_CompressTo
+DefaultLocation_CompressFrom = {Location_defaultName:outputDeCompressPath}
 "   默认密码"
-DefaultPasswordJson=[password(password_defulatName,"a123","a123")]
+DefaultPasswordJson = [password(password_defulatName, "a123", "a123")]
 "   默认flag"
-DefaultFlagJson={flag_firstOpenName:True,flag_firstPageName:firstPageName_Compress}
+DefaultFlagJson = {flag_firstOpenName: True,
+                   flag_firstPageName: firstPageName_Compress}
 
 '密码中的空格'
 """
@@ -63,5 +73,3 @@ checkSign = "Check"
 "解压压缩文件的后缀"
 compressType = ('.rar', '.zip', '.7z')
 filetypes_speial = (('压缩格式1', compressType),)
-
-

@@ -64,7 +64,8 @@ def clear_workspace():
 
 def clear_output():
     "clear data_output"
-    fileDel.del_file(const.outputPath)
+    fileDel.del_file(const.outputCompressPath)
+    fileDel.del_file(const.outputDeCompressPath)
 
 
 def initFile_readme():

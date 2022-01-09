@@ -32,7 +32,14 @@ file_structure = ["",
                        ()
                        ],
                       ["data_output",
-                       ()
+                       (
+                           ["Compress",
+                            ()
+                            ],
+                           ["DeCompress",
+                            ()
+                            ]
+                       )
                        ],
                   )
                   ]
@@ -63,12 +70,14 @@ def openFileInOS(path):
     print(path)
     os.system(f'explorer /select, \"{path}\"')
 
+
 def openFile(path):
     "直接打开文件"
     import subprocess as sp
     programName = "notepad.exe"
     fileName = path
     sp.Popen([programName, fileName])
+
 
 if __name__ == '__main__':
     def searchDFS(path, x):

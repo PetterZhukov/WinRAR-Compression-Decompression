@@ -109,6 +109,17 @@ class LocationJson:
         with open(const.LoactionJsonPath, 'r',encoding='utf-8') as f:
             return json.load(f)
     
+    
+
+    @staticmethod
+    def getCompressFrom()->str:
+        "get CompressFrom"
+        return LocationJson.getLocationLoad_byFile().get()
+
+    @staticmethod
+    def setCompressFrom()
+
+
     @staticmethod
     def getLocationDefault()->str:
         "获得 default location"

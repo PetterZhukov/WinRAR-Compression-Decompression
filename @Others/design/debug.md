@@ -38,7 +38,8 @@
     - [ ] 重新读写json要刷新其他读取json的页面 ->手动刷新 / 每次打开都自动刷新
     - [ ] Location分为 CompressFrom,CompressTo,DeCompressTo
     - [ ] 修改路径/密码的条得可编辑且够长够宽
-    - [ ] 保护default
+    - [x] 保护default
+    - [ ] data_output分为解压和压缩
 - [ ] 码云的拉取失败了，怎么以本地为主创建仓库
 
 # 注意事项
