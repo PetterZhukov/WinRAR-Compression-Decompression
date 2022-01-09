@@ -141,9 +141,9 @@ class DeCompressFrame(Frame):
         "从被压缩文件处获得文件名"
         num = os.path.split(self.From.get())
         if self.From.get() == "":
-            tkinter.messagebox.showinfo(title="警告", message="未填写被压缩路径")
+            tkinter.messagebox.showwarning(title="警告", message="未填写被压缩路径")
         elif len(num) < 2:
-            tkinter.messagebox.showinfo(title="警告", message="被压缩路径格式错误")
+            tkinter.messagebox.showwarning(title="警告", message="被压缩路径格式错误")
         else:
             self.ToFilename.set(os.path.splitext(num[1])[0])
 
@@ -253,11 +253,11 @@ class DeCompressFrame(Frame):
         if tkinter.messagebox.askokcancel("警告", "命名格式符合标准的才可以读取,是否继续?"):
             name = os.path.split(os.path.splitext(self.From.get())[0])[-1]
             if len(name.split()) <= 3:
-                tkinter.messagebox.showinfo("警告", "命名不符合标准格式，可能被改动或不是本程序产生")
+                tkinter.messagebox.showwarning("警告", "命名不符合标准格式，可能被改动或不是本程序产生")
             else:
                 checkStr = name.split()[-3]
                 if not checkModel.judgeCheckStr(checkStr):
-                    tkinter.messagebox.showinfo("警告", "命名不符合标准格式，可能被改动或不是本程序产生")
+                    tkinter.messagebox.showwarning("警告", "命名不符合标准格式，可能被改动或不是本程序产生")
                 else:
                     p1, p2 = name.split()[-2:]
                     self.password1.set(p1)
@@ -327,7 +327,7 @@ class DeCompressFrame(Frame):
         """
         ret = self.checkPasswordNULL()
         if ret != None:
-            tkinter.messagebox.showinfo(title="警告", message=ret)
+            tkinter.messagebox.showwarning(title="警告", message=ret)
             return
         if not self.checkPasswordSpace_change():
             tkinter.messagebox.showinfo(
@@ -335,11 +335,11 @@ class DeCompressFrame(Frame):
             return
         ret = self.checkFrom()
         if ret != None:
-            tkinter.messagebox.showinfo(title="警告", message=ret)
+            tkinter.messagebox.showwarning(title="警告", message=ret)
             return
         ret = self.checkTo()
         if ret != None:
-            tkinter.messagebox.showinfo(title="警告", message=ret)
+            tkinter.messagebox.showwarning(title="警告", message=ret)
             return
         print(
             f" submit _compress {(self.From.get(),self.ToDirname.get(),self.ToFilename.get())}")

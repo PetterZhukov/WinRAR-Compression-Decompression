@@ -76,7 +76,7 @@ class MainPage:
 
     def __showFirstMessagebox(self):
 
-        showinfo("欢迎",
+        tkinter.messagebox.showinfo("欢迎",
                  """ 欢迎使用本程序
     教程和注意事项请看"起始页"
     "初始化"用于初始化程序的文件和结构

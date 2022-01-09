@@ -16,10 +16,10 @@
 - [ ] 根据后缀前面几个字智能判断文件类型
 - [ ] 初始页面 init workspace
 - [x] 使用github上传  -> 码云
-- [ ] git删除大文件
+- [x] git删除大文件 -> 直接把.git删了
 - [ ] 总体使用一遍git
-- [ ] 更改为下拉框选择默认路径，json结构 -> ttk , 文件存储,constValue
-- [ ] 写产生文件树的函数,更新结构.txt
+- [x] 更改为下拉框选择默认路径，json结构 -> ttk , 文件存储,constValue
+- [x] 写产生文件树的函数,更新结构.txt
 - [ ] 增加功能v4
     - [x] 初始提示页面
     - [x] 初始化/增加/删除 设置
@@ -28,25 +28,26 @@
     - [ ] 自定义内外层压缩格式
     - [ ] 是否产生命令行
     - [x] 读写交互放在单独的文件夹里面
-    - [ ] 调包规范化
-    - [ ] 有的showinfo改成showerror,showwarning    https://www.cnblogs.com/buchizaodian/p/7076964.html
-    - [ ] 除去mainpage的注释
+    - [x] 调包规范化
+    - [x] 有的showinfo改成showerror,showwarning    https://www.cnblogs.com/buchizaodian/p/7076964.html
+    - [x] showerror和showwarning选择哪个 -> 警告 和 报错
+    - [x] 除去mainpage的注释
     - [x] 除去origin的注释
     - [x] 重写 compress和decompress
     - [x] 修改 FirstPage
     - [x] 补上comments
     - [x] 重新读写json要刷新其他读取json的页面 ->手动刷新 / 每次打开都自动刷新
-    - [ ] Location分为 CompressFrom,CompressTo,DeCompressTo
+    - [x] Location分为 CompressFrom,CompressTo,DeCompressTo
     - [ ] 修改路径/密码的条得可编辑且够长够宽
     - [x] 保护default
     - [x] data_output分为解压和压缩
     - [x] 修改flag
     - [x] password 也先更新json然后从json拿取
-    - [ ] 压缩到的路径应该是Compress
-    - [ ] Decompress也需要分可视化get
+    - [x] 压缩到的路径应该是Compress
+    - [x] Decompress也需要分可视化get
     - [x] Compress 默认位置失灵
     - [x] 调整页面大小
-    - [ ] 优化import结构（太乱）
+    - [x] 优化import结构（太乱）
     - [x] current(0) password 多了
     - [x] 修改提示"选择存储的路径"
     - [ ] origin先运行，然后要运行的时候才创建其他部分，保证安全

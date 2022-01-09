@@ -99,7 +99,7 @@ class EditLocationFrame(Frame):
             index = self.LocationCBox.current()
             keyName = list(self.LocationDict.keys())[index]
             if keyName == const.Location_defaultName:
-                tkinter.messagebox.showerror("警告", "不能更改默认值")
+                tkinter.messagebox.showwarning("警告", "不能更改默认值")
             else:
                 self.LocationDict.pop(keyName)
                 self.update_LocationJson()
@@ -118,7 +118,7 @@ class EditLocationFrame(Frame):
             if self.LocationName.get() == "":
                 self.LocationName.set(getDefaultName())
             if self.LocationName.get() in self.LocationDict.keys():
-                tkinter.messagebox.showerror("警告", "路径设定名字不能重名")
+                tkinter.messagebox.showwarning("警告", "路径设定名字不能重名")
             else:
                 self.LocationDict[self.LocationName.get()
                                   ] = self.LocationIn.get()

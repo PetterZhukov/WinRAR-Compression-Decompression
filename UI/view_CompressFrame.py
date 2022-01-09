@@ -141,7 +141,7 @@ class CompressFrame(Frame):
     def getFromDirname(self):
         "从被压缩文件处获得文件名"
         if(self.From.get() == ''):
-            tkinter.messagebox.showinfo(title="警告", message="未填写被压缩路径")
+            tkinter.messagebox.showwarning(title="警告", message="未填写被压缩路径")
         else:
             if self.FromIsFile.get():
                 num = os.path.split(self.From.get())
@@ -332,19 +332,19 @@ class CompressFrame(Frame):
         """
         ret = self.checkPasswordNULL()
         if ret != None:
-            tkinter.messagebox.showinfo(title="警告", message=ret)
+            tkinter.messagebox.showwarning(title="警告", message=ret)
             return
         if not self.checkPasswordSpace_change():
-            tkinter.messagebox.showinfo(
+            tkinter.messagebox.showwarning(
                 title="警告", message="密码中含有空格，已自动替换成'_'")
             return
         ret = self.checkFrom()
         if ret != None:
-            tkinter.messagebox.showinfo(title="警告", message=ret)
+            tkinter.messagebox.showwarning(title="警告", message=ret)
             return
         ret = self.checkTo()
         if ret != None:
-            tkinter.messagebox.showinfo(title="警告", message=ret)
+            tkinter.messagebox.showwarning(title="警告", message=ret)
             return
         print(
             f" submit _compress {(self.From.get(),self.ToDirname.get(),self.ToFilename.get())}")
@@ -356,4 +356,4 @@ class CompressFrame(Frame):
             print(getStrOfFilePath(ret))
             openFileInOS(ret)
         else:
-            tkinter.messagebox.showinfo("error", ret)
+            tkinter.messagebox.showerror("error", ret)

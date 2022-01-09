@@ -69,7 +69,7 @@ class EditPasswordFrame(Frame):
             index = self.passwordCBox.current()
             keyName=list(self.passwordDict.keys())[index]
             if keyName==const.password_defulatName:
-                tkinter.messagebox.showerror("警告","不能更改默认值")
+                tkinter.messagebox.showwarning("警告","不能更改默认值")
             else:
                 self.passwordDict.pop(keyName)
                 self.update_PasswordJson()
@@ -88,7 +88,7 @@ class EditPasswordFrame(Frame):
             if self.passwordName.get() == "":
                 self.passwordName.set(getDefaultName())
             if self.passwordName.get() in self.passwordDict.keys():
-                tkinter.messagebox.showerror("警告", "密码设定名字不能重名")
+                tkinter.messagebox.showwarning("警告", "密码设定名字不能重名")
             else:
                 pClass = password(self.passwordName.get(),
                                   self.password1.get(), self.password2.get())
