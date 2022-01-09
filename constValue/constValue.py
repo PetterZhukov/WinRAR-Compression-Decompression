@@ -51,7 +51,7 @@ DefaultLocationAll = {Location_CompressFromName: DefaultLocation_CompressFrom,
 DefaultPasswordJson = [password(password_defulatName, "a123", "a123")]
 "   默认flag"
 DefaultFlagJson = {flag_firstOpenName: True,
-                   flag_firstPageName: firstPageName_Compress}
+                   flag_firstPageName: firstPageName_Origin}
 
 '密码中的空格'
 """

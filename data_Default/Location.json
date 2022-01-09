@@ -1,14 +1,1 @@
-{
-    "CompressTo": {
-        "Default": ".//data_output//DeCompress//",
-        "\u8def\u5f843": "CompressTo_DeCompressFrom"
-    },
-    "DeCompressTo": {
-        "Default": ".//data_output//DeCompress//",
-        "\u8def\u5f841": "DeCompressTo"
-    },
-    "CompressFrom": {
-        "Default": ".//data_output//DeCompress//",
-        "\u8def\u5f841": "CompressFrom"
-    }
-}
+{"CompressFrom": {"Default": ".//data_output//DeCompress//"}, "CompressTo": {"Default": ".//data_output//Compress//"}, "DeCompressTo": {"Default": ".//data_output//DeCompress//"}}

@@ -19,7 +19,7 @@ def creatFolder(path):
 def initFile(infoDict: dict, path: str):
     "根据fileStructure初始化文件"
     if 'initFunc' in infoDict.keys():
-        infoDict['default']()
+        infoDict['initFunc']()
     else:
         fileIO.writeStrToFile(path, "")
 
@@ -29,7 +29,7 @@ def initFileStructure_AllFile():
     def searchDFS(path, x):
         if type(x) == list:
             path = os.path.join(path, x[0])
-            print(path)
+            print(f"   search:{path}")
             creatFolder(path)
             searchDFS(path, x[1])
         elif type(x) == tuple:
@@ -37,6 +37,7 @@ def initFileStructure_AllFile():
                 searchDFS(path, i)
         elif type(x) == dict:
             path = os.path.join(path, x['name'])
+            print(f"     init File:{path}")
             initFile(x, path)
     searchDFS(".//", fileStruct.file_structure)
 

@@ -1,3 +1,4 @@
+from io import FileIO
 import os
 from tkinter import font, ttk
 import tkinter.filedialog
@@ -5,7 +6,7 @@ from tkinter import *
 from tkinter.ttk import Combobox
 import tkinter.messagebox
 
-
+import fileIO.fileIO as fileIO
 import constValue.constValue as const
 import constValue.readme as readme
 import fileIO.fileDel as fileDel
@@ -34,7 +35,8 @@ class OriginFrame(Frame):
             row=row, column=0, rowspan=1, columnspan=4, sticky='EW', pady=5, padx=5)
 
         row += 1
-        Label(self, text="提示:",font=('宋体', 13, 'bold')).grid(row=row, columnspan=5, sticky=W)
+        Label(self, text="提示:", font=('宋体', 13, 'bold')).grid(
+            row=row, columnspan=5, sticky=W)
         row += 1
         Text1 = Text(self, width=50, height=8)
         Text1.grid(row=row, column=0, columnspan=5, rowspan=4)
@@ -61,22 +63,24 @@ class OriginFrame(Frame):
         Label(self, text="点击以进行最开始的初始化", font=('宋体', 10, 'bold')).grid(
             row=row, sticky=W, columnspan=2)
 
-        row+=1
+        row += 1
         Button(self, text="初始化以继续",
                command=lambda:
-               initModel.initFileStructure_AllFile() if
-               tkinter.messagebox.askokcancel("初始化", "初始化文件结构和配置文件") else None
+               (lambda: (initModel.initFileStructure_AllFile(),
+                        fileIO.FlagJson.setFirstOpen(False)))()
+               if tkinter.messagebox.askokcancel("初始化", "初始化文件结构和配置文件")
+               else None
                ).grid(
-            row=row, column=0, stick=W, pady=2,sticky=EW)
-        
+            row=row, column=0, stick=W, pady=2, sticky=EW)
+
         row += 1
         ttk.Separator(self, orient='horizontal').grid(
             row=row, column=0, rowspan=1, columnspan=5, sticky='EW', pady=20)
-        
+
         row += 1
         Label(self, text="点击查看说明文档", font=('宋体', 10, 'bold')).grid(
             row=row, sticky=W, columnspan=2)
-            
+
         row += 1
         Button(self, text="查看说明文档readme", command=self.init_readme_open).grid(
             row=row, column=0, stick=W, pady=2)
