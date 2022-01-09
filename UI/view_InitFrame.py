@@ -7,6 +7,7 @@ import tkinter.messagebox
 
 import constValue.constValue as const
 import functionModel.initModel as initModel
+import functionModel.initStructureModel as initStructureModel
 import fileIO.fileStructure as fileStructure
 import fileIO.fileIO as fileIO
 
@@ -15,12 +16,6 @@ class InitFrame(Frame):
     def __init__(self, master=None):
         Frame.__init__(self, master)
         self.root = master
-        self.defaultPath = StringVar()
-        self.passwordName = StringVar()
-        self.password1 = StringVar()
-        self.password2 = StringVar()
-        self.passwordDict = fileIO.PasswordJson.getPasswordLoad_byFile()
-
         self.creatPage()
 
     def creatPage(self):
@@ -42,7 +37,7 @@ class InitFrame(Frame):
 
         row += 1
         Button(self, text="初始化文件结构",
-               command=initModel.initFileStructure_Dir).grid(
+               command=initStructureModel.initFileStructure_Dir).grid(
             row=row, column=0, stick=W, pady=2)
 
         row += 1

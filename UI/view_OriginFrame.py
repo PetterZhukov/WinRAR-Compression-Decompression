@@ -9,6 +9,7 @@ import fileIO.fileIO as fileIO
 import constValue.constValue as const
 import constValue.readme as readme
 import functionModel.initModel as initModel
+import functionModel.initStructureModel as initStructureModel
 import fileIO.fileStructure as fileStructure
 
 
@@ -62,7 +63,7 @@ class OriginFrame(Frame):
         row += 1
         Button(self, text="初始化以继续",
                command=lambda:
-               (lambda: (initModel.initFileStructure_AllFile(),
+               (lambda: (initStructureModel.initFileStructure_Dir(),
                          fileIO.FlagJson.setFirstOpen(False)))()
                if tkinter.messagebox.askokcancel("初始化", "初始化文件结构和配置文件")
                else None
