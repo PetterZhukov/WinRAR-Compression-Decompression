@@ -304,13 +304,13 @@ class CompressFrame(Frame):
     def updateCompressFromCBox(self):
         "更新CompressFrom CBox"
         self.LocationCompressFromCBox['values'] = (
-            "选择存储的路径", *[f"{a} : {b}" for a, b in self.LocationCompressFromDict.items()])
+            "选择存储的路径<从...压缩>", *[f"{a} : {b}" for a, b in self.LocationCompressFromDict.items()])
         self.LocationCompressFromCBox.current(0)
 
     def updateCompressToCBox(self):
         "更新CompressTo CBox"
         self.LocationCompressToCBox['values'] = (
-            "选择存储的路径", *[f"{a} : {b}" for a, b in self.LocationCompressToDict.items()])
+            "选择存储的路径<压缩到...>", *[f"{a} : {b}" for a, b in self.LocationCompressToDict.items()])
         self.LocationCompressToCBox.current(0)
 
     def Refresh(self):

@@ -297,17 +297,17 @@ class DeCompressFrame(Frame):
                     self.passwordDict.items())))
         self.cbox.current(0)
 
-    def updateDeCompressToCBox(self):
-        "更新DeCompressTo CBox"
-        self.LocationDeCompressToCBox['values'] = (
-            "选择存储的路径", *[f"{a} : {b}" for a, b in self.LocationDeCompressToDict.items()])
-        self.LocationDeCompressToCBox.current(0)
-
     def updateDeCompressFromCBox(self):
         "更新DeCompressFrom CBox"
         self.LocationDeCompressFromCBox['values'] = (
-            "选择存储的路径", *[f"{a} : {b}" for a, b in self.LocationDeCompressFromDict.items()])
+            "选择存储的路径<从...中解压>", *[f"{a} : {b}" for a, b in self.LocationDeCompressFromDict.items()])
         self.LocationDeCompressFromCBox.current(0)
+
+    def updateDeCompressToCBox(self):
+        "更新DeCompressTo CBox"
+        self.LocationDeCompressToCBox['values'] = (
+            "选择存储的路径<解压到...>", *[f"{a} : {b}" for a, b in self.LocationDeCompressToDict.items()])
+        self.LocationDeCompressToCBox.current(0)
 
     def Refresh(self):
         "刷新3个选择框"
