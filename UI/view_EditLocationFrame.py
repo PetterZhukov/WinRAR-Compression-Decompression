@@ -52,7 +52,7 @@ class EditLocationFrame(Frame):
         row += 1
         Label(self, text="删除", font=('宋体', 13, 'bold')).grid(
             row=row, sticky=E, padx=35)
-        self.LocationCBox = Combobox(self, width=30)
+        self.LocationCBox = Combobox(self, width=50)
         self.LocationCBox.grid(row=row, column=1, pady=10)
         Button(self, text="预览位置", command=self.previewToCBoxLoaction).grid(
             row=row, column=2, padx=10)

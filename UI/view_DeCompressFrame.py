@@ -76,7 +76,7 @@ class DeCompressFrame(Frame):
             row=row, column=1, pady=10, sticky=EW)
 
         row += 1
-        Label(self, text="解压路径").grid(row=row, sticky=W, padx=10)
+        Label(self, text="解压路径").grid(row=row)
 
         row += 1
         Entry(self, textvariable=self.ToDirname).grid(
@@ -97,7 +97,7 @@ class DeCompressFrame(Frame):
             row=row, column=1, pady=10, sticky=EW)
 
         row += 1
-        Label(self, text="解压文件名").grid(row=row, sticky=W, padx=10)
+        Label(self, text="解压文件名").grid(row=row)
 
         row += 1
         Entry(self, textvariable=self.ToFilename).grid(

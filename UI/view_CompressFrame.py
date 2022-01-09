@@ -55,8 +55,7 @@ class CompressFrame(Frame):
             row=row, column=0, rowspan=1, columnspan=4, sticky='EW', pady=5, padx=5)
 
         row += 1
-        Label(self, text="要压缩的位置(文件/文件夹)").grid(row=row)
-
+        Label(self, text="要压缩的位置(文件/文件夹)").grid(row=row,columnspan=4,padx=20,sticky=W)
         row += 1
         Radiobutton(self, text="文件", variable=self.FromIsFile, value=True).grid(row=row,
                                                                                 column=0,)
@@ -83,7 +82,7 @@ class CompressFrame(Frame):
             row=row, column=1, pady=10, sticky=EW)
 
         row += 1
-        Label(self, text="解压路径").grid(row=row, sticky=W, padx=10)
+        Label(self, text="压缩路径").grid(row=row)
 
         row += 1
         Entry(self, textvariable=self.ToDirname).grid(
@@ -104,7 +103,7 @@ class CompressFrame(Frame):
             row=row, column=1, pady=10, sticky=EW)
 
         row += 1
-        Label(self, text="解压文件名").grid(row=row, sticky=W, padx=10)
+        Label(self, text="压缩文件名").grid(row=row)
 
         row += 1
         Entry(self, textvariable=self.ToFilename).grid(
