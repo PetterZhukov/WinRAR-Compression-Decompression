@@ -51,7 +51,7 @@
     - [x] current(0) password 多了
     - [x] 修改提示"选择存储的路径"
     - [ ] origin先运行，然后要运行的时候才创建其他部分，保证安全
-    - [ ] DeCompress的cbox名字改成passwordCBox
+    - [x] DeCompress的cbox名字改成passwordCBox
 - [ ] 码云的拉取失败了，怎么以本地为主创建仓库
 
 # 注意事项

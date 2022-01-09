@@ -127,11 +127,11 @@ class DeCompressFrame(Frame):
         row += 1
         Label(self, text="密码选择 : ").grid(row=row, sticky=E, padx=10)
         # ttk combox
-        self.cbox = ttk.Combobox(self, width=25, state='readonly')
+        self.PasswordCBox = ttk.Combobox(self, width=25, state='readonly')
         self.updatePasswordCBox()
 
-        self.cbox.bind('<<ComboboxSelected>>', self.retPassword)
-        self.cbox.grid(row=row, column=1, pady=10)
+        self.PasswordCBox.bind('<<ComboboxSelected>>', self.retPassword)
+        self.PasswordCBox.grid(row=row, column=1, pady=10)
 
         row += 1
         Button(self, text="Submit", command=self.submit, width=30).grid(
@@ -282,19 +282,19 @@ class DeCompressFrame(Frame):
 
     def retPassword(self, *args):
         "从cbox处获得password并set"
-        if self.cbox.current() > 0:
+        if self.PasswordCBox.current() > 0:
             s = self.passwordDict[tuple(self.passwordDict.keys())[
-                self.cbox.current()-1]]
+                self.PasswordCBox.current()-1]]
             self.password1.set(s.password1)
             self.password2.set(s.password2)
 
     def updatePasswordCBox(self):
         "更新Password CBox"
-        self.cbox['values'] = (
+        self.PasswordCBox['values'] = (
             "选择存储的密码", *list(
                 map(lambda o: f"name=\"{o[0]}\": {o[1].password1} {o[1].password2}",
                     self.passwordDict.items())))
-        self.cbox.current(0)
+        self.PasswordCBox.current(0)
 
     def updateDeCompressFromCBox(self):
         "更新DeCompressFrom CBox"
