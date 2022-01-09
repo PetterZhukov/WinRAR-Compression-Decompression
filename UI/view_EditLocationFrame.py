@@ -14,11 +14,12 @@ import functionModel.initModel as initModel
 import fileIO.fileStructure as fileStructure
 import fileIO.fileIO as fileIO
 
+
 class EditLocationFrame(Frame):
     def __init__(self, master=None):
         Frame.__init__(self, master)
         self.root = master
-        
+
         self.LocationName = StringVar()
         self.LocationIn = StringVar()
         self.LocationDict = fileIO.LocationJson.getLocationLoad_byFile()
@@ -46,42 +47,49 @@ class EditLocationFrame(Frame):
         self.LocationCBox.current(0)
         self.LocationCBox.grid(row=row, column=1, pady=10)
         Button(self, text="预览位置", command=self.previewToCBoxLoaction).grid(
-            row=row, column=2,padx=10)
+            row=row, column=2, padx=10)
 
-        row+=1
+        row += 1
         Button(self, text="提交删除", command=self.del_Location).grid(
-            row=row, column=1,stick=W, pady=5,padx=5)
+            row=row, column=1, stick=W, pady=5, padx=5)
         row += 1
         Label(self, text="增加", font=('宋体', 13, 'bold')).grid(row=row, sticky=W)
 
         row += 1
         Label(self, text="路径名字(不能重复) : ").grid(row=row, sticky=E)
-        Entry(self, textvariable=self.LocationName).grid(row=row, column=1,sticky=W)
+        Entry(self, textvariable=self.LocationName).grid(
+            row=row, column=1, sticky=W)
 
         row += 1
         Label(self, text="路径 : ").grid(row=row, sticky=E)
-        Entry(self, textvariable=self.LocationIn).grid(row=row, column=1,sticky=EW)
+        Entry(self, textvariable=self.LocationIn).grid(
+            row=row, column=1, sticky=EW)
         Button(self, text="预览位置", command=self.previewToLocation).grid(
-            row=row, column=2,padx=10)
+            row=row, column=2, padx=10)
         row += 1
         Button(self, text="提交增加", command=self.add_Location).grid(
             row=row, column=1, stick=W, pady=5)
 
-
-
     def previewToCBoxLoaction(self):
-        tkinter.filedialog.askdirectory(initialdir=self.LocationDict[list(self.LocationDict.keys())[self.LocationCBox.current()]])
+        tkinter.filedialog.askdirectory(initialdir=self.LocationDict[list(
+            self.LocationDict.keys())[self.LocationCBox.current()]])
+
     def previewToLocation(self):
-        self.LocationIn.set(os.path.normpath(tkinter.filedialog.askdirectory())+'\\') 
+        self.LocationIn.set(os.path.normpath(
+            tkinter.filedialog.askdirectory())+'\\')
+
     def del_Location(self):
         "删除某行Location"
         if tkinter.messagebox.askokcancel("提示", "确认要提交删除？"):
             index = self.LocationCBox.current()
-            keyName=list(self.LocationDict.keys())[index]
-            self.LocationDict.pop(keyName)
-            self.update_LocationCBox()
-            self.update_LocationJson()
-            tkinter.messagebox.showinfo("提示", "删除成功")
+            keyName = list(self.LocationDict.keys())[index]
+            if keyName==const.Location_defaultName:
+                tkinter.messagebox.showerror("警告","不能更改默认值")
+            else:
+                self.LocationDict.pop(keyName)
+                self.update_LocationCBox()
+                self.update_LocationJson()
+                tkinter.messagebox.showinfo("提示", "删除成功")
 
     def add_Location(self):
         "增加Location"
@@ -97,16 +105,18 @@ class EditLocationFrame(Frame):
             if self.LocationName.get() in self.LocationDict.keys():
                 tkinter.messagebox.showerror("警告", "路径设定名字不能重名")
             else:
-                self.LocationDict[self.LocationName.get()] = self.LocationIn.get()
+                self.LocationDict[self.LocationName.get()
+                                  ] = self.LocationIn.get()
                 self.update_LocationCBox()
                 self.update_LocationJson()
                 tkinter.messagebox.showinfo("成功", "成功增加路径设定")
 
     def update_LocationCBox(self):
         "更改Location下拉框的值"
-        self.LocationCBox['values'] = [a+':  \"'+b+'\"' for a,b in self.LocationDict.items()]
+        self.LocationCBox['values'] = [a+':  \"'+b +
+                                       '\"' for a, b in self.LocationDict.items()]
         self.LocationCBox.current(0)
-                                            
+
     def update_LocationJson(self):
         "将更改提交到Location.json"
-        fileIO.LocationJson.pushLoactionDump_ToFile(self.LocationDict) 
+        fileIO.LocationJson.pushLoactionDump_ToFile(self.LocationDict)

@@ -116,10 +116,13 @@ class EditPasswordFrame(Frame):
         if tkinter.messagebox.askokcancel("提示", "确认要提交删除？"):
             index = self.passwordCBox.current()
             keyName=list(self.passwordDict.keys())[index]
-            self.passwordDict.pop(keyName)
-            self.update_passwordCBox()
-            self.update_PasswordJson()
-            tkinter.messagebox.showinfo("提示", "删除成功")
+            if keyName==const.password_defulatName:
+                tkinter.messagebox.showerror("警告","不能更改默认值")
+            else:
+                self.passwordDict.pop(keyName)
+                self.update_passwordCBox()
+                self.update_PasswordJson()
+                tkinter.messagebox.showinfo("提示", "删除成功")
 
     def add_password(self):
         "增加password"
