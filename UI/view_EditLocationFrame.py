@@ -22,7 +22,7 @@ class EditLocationFrame(Frame):
 
         self.LocationName = StringVar()
         self.LocationIn = StringVar()
-        self.LocationDict = fileIO.LocationJson.getLocationLoad_byFile()
+        self.LocationDict = fileIO.LocationJson.getCompressFrom()
 
         self.creatPage()
 
@@ -119,4 +119,4 @@ class EditLocationFrame(Frame):
 
     def update_LocationJson(self):
         "将更改提交到Location.json"
-        fileIO.LocationJson.pushLoactionDump_ToFile(self.LocationDict)
+        fileIO.LocationJson.setCompressFrom(self.LocationDict)

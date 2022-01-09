@@ -76,7 +76,7 @@ def initFile_readme():
 def initFile_Location():
     "初始化Location.json"
     fileIO.LocationJson.pushLoactionDump_ToFile(
-        const.DefaultLocation)
+        const.DefaultLocationAll)
 
 
 def initFile_Password():

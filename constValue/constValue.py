@@ -11,8 +11,8 @@ FlagPath = join(DefaultPath, "Flag.json")
 workspacePath = './/data_workspace//'
 "output dir  --存储解压解压和压缩结果"
 outputPath = './/data_output//'
-outputCompressPath=join(outputPath,'Compress//')
-outputDeCompressPath=join(outputPath,'DeCompress//')
+outputCompressPath = join(outputPath, 'Compress//')
+outputDeCompressPath = join(outputPath, 'DeCompress//')
 "read me"
 readmePath = ".//readme.txt"
 
@@ -41,10 +41,12 @@ Location_defaultName = "Default"
 
 "默认 select_fileStructure"
 "   默认地址"
-DefaultLocation_CompressFrom = {Location_defaultName:outputDeCompressPath}
-DefaultLocation_CompressTo = {Location_defaultName:outputCompressPath}
-DefaultLocation_CompressFrom = DefaultLocation_CompressTo
-DefaultLocation_CompressFrom = {Location_defaultName:outputDeCompressPath}
+DefaultLocation_CompressFrom = {Location_defaultName: outputDeCompressPath}
+DefaultLocation_CompressTo = {Location_defaultName: outputCompressPath}
+DefaultLocation_DeCompressTo = {Location_defaultName: outputDeCompressPath}
+DefaultLocationAll = {Location_CompressFromName: DefaultLocation_CompressFrom,
+                      Location_CompressToName: DefaultLocation_CompressTo,
+                      Location_DeCompressToName: DefaultLocation_DeCompressTo}
 "   默认密码"
 DefaultPasswordJson = [password(password_defulatName, "a123", "a123")]
 "   默认flag"

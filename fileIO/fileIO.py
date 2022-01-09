@@ -9,12 +9,12 @@ import constValue.constValue as const
 
 def initJson_File(path: str, to):
     "普通对象初始化json文件"
-    with open(const.PasswordJsonPath, 'w',encoding='utf-8') as f:
+    with open(const.PasswordJsonPath, 'w', encoding='utf-8') as f:
         json.dump(to, f)
 
 
 def writeStrToFile(path: str, to: str):
-    with open(path, 'w',encoding='utf-8') as f:
+    with open(path, 'w', encoding='utf-8') as f:
         f.write(to)
 
 
@@ -32,7 +32,7 @@ class PasswordJson:
     @staticmethod
     def getPasswordLoad_byFile() -> dict:
         "get JsonFile Load"
-        with open(const.PasswordJsonPath, 'r',encoding='utf-8') as f:
+        with open(const.PasswordJsonPath, 'r', encoding='utf-8') as f:
             return json.load(f, object_hook=PasswordJson.jsonToObject)
 
     @staticmethod
@@ -48,7 +48,7 @@ class PasswordJson:
     @staticmethod
     def pushPasswordDump_ToFile(to: list) -> None:
         "write object dump to File"
-        with open(const.PasswordJsonPath, 'w',encoding='utf-8') as f:
+        with open(const.PasswordJsonPath, 'w', encoding='utf-8') as f:
             json.dump({o.name: o for o in to}, f, default=lambda o: o.__dict__)
 
 
@@ -59,13 +59,13 @@ class FlagJson:
     @staticmethod
     def getFlagLoad_byFile() -> dict:
         "get JsonFile Load"
-        with open(const.FlagPath, 'r',encoding='utf-8') as f:
+        with open(const.FlagPath, 'r', encoding='utf-8') as f:
             return json.load(f)
 
     @staticmethod
     def pushFlagDump_ToFile(to: dict) -> None:
         "write object dump to File"
-        with open(const.FlagPath, 'w',encoding='utf-8') as f:
+        with open(const.FlagPath, 'w', encoding='utf-8') as f:
             json.dump(to, f)
 
     @staticmethod
@@ -100,27 +100,73 @@ class LocationJson:
     @staticmethod
     def pushLoactionDump_ToFile(to: dict) -> None:
         "write object dump to File"
-        with open(const.LoactionJsonPath, 'w',encoding='utf-8') as f:
+        with open(const.LoactionJsonPath, 'w', encoding='utf-8') as f:
             json.dump(to, f)
 
     @staticmethod
     def getLocationLoad_byFile() -> dict:
         "get JsonFile Load"
-        with open(const.LoactionJsonPath, 'r',encoding='utf-8') as f:
+        with open(const.LoactionJsonPath, 'r', encoding='utf-8') as f:
             return json.load(f)
-    
-    
 
+    #CompressFrom
     @staticmethod
-    def getCompressFrom()->str:
+    def getCompressFrom() -> dict:
         "get CompressFrom"
-        return LocationJson.getLocationLoad_byFile().get()
+        return LocationJson.getLocationLoad_byFile().get(
+            const.Location_CompressFromName, const.DefaultLocation_CompressFrom)
 
     @staticmethod
-    def setCompressFrom()
+    def setCompressFrom(v:dict):
+        "set [CompressFrom] = v"
+        Location=LocationJson.getLocationLoad_byFile()
+        Location[const.Location_CompressFromName]=v
+        LocationJson.pushLoactionDump_ToFile(Location)
+    
+    #CompressTo
+    @staticmethod
+    def getCompressTo() -> dict:
+        "get CompressTo"
+        return LocationJson.getLocationLoad_byFile().get(
+            const.Location_CompressToName, const.DefaultLocation_CompressTo)
+
+    @staticmethod
+    def setCompressTo(v:dict):
+        "set [CompressTo] = v"
+        Location=LocationJson.getLocationLoad_byFile()
+        Location[const.Location_CompressToName]=v
+        LocationJson.pushLoactionDump_ToFile(Location)
+
+    #DeCompressTo
+    @staticmethod
+    def getDeCompressTo() -> dict:
+        "get DeCompressTo"
+        return LocationJson.getLocationLoad_byFile().get(
+            const.Location_DeCompressToName, const.DefaultLocation_DeCompressTo)
+
+    @staticmethod
+    def setDeCompressFrom(v:dict):
+        "set [DeCompressTo] = v"
+        Location=LocationJson.getLocationLoad_byFile()
+        Location[const.Location_DeCompressToName]=v
+        LocationJson.pushLoactionDump_ToFile(Location)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     @staticmethod
-    def getLocationDefault()->str:
+    def getLocationDefault() -> str:
         "获得 default location"
-        return LocationJson.getLocationLoad_byFile().get(const.Location_defaultName,"")
+        return LocationJson.getLocationLoad_byFile().get(const.Location_defaultName, "")
