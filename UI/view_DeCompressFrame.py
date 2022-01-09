@@ -73,7 +73,7 @@ class DeCompressFrame(Frame):
         self.LocationDeCompressFromCBox.bind(
             '<<ComboboxSelected>>', self.retLocationDeCompressFrom)
         self.LocationDeCompressFromCBox.grid(
-            row=row, column=1, pady=10, sticky=EW, padx=10)
+            row=row, column=1, pady=10, sticky=EW)
 
         row += 1
         Label(self, text="解压路径").grid(row=row, sticky=W, padx=10)
@@ -94,7 +94,7 @@ class DeCompressFrame(Frame):
         self.LocationDeCompressToCBox.bind(
             '<<ComboboxSelected>>', self.retLocationDeCompressTo)
         self.LocationDeCompressToCBox.grid(
-            row=row, column=1, pady=10, sticky=EW, padx=10)
+            row=row, column=1, pady=10, sticky=EW)
 
         row += 1
         Label(self, text="解压文件名").grid(row=row, sticky=W, padx=10)

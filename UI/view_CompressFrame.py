@@ -80,7 +80,7 @@ class CompressFrame(Frame):
         self.LocationCompressFromCBox.bind(
             '<<ComboboxSelected>>', self.retLocationCompressFrom)
         self.LocationCompressFromCBox.grid(
-            row=row, column=1, pady=10, sticky=EW, padx=10)
+            row=row, column=1, pady=10, sticky=EW)
 
         row += 1
         Label(self, text="解压路径").grid(row=row, sticky=W, padx=10)
@@ -101,7 +101,7 @@ class CompressFrame(Frame):
         self.LocationCompressToCBox.bind(
             '<<ComboboxSelected>>', self.retLocationCompressTo)
         self.LocationCompressToCBox.grid(
-            row=row, column=1, pady=10, sticky=EW, padx=10)
+            row=row, column=1, pady=10, sticky=EW)
 
         row += 1
         Label(self, text="解压文件名").grid(row=row, sticky=W, padx=10)
@@ -132,7 +132,7 @@ class CompressFrame(Frame):
         self.passwordCBox = ttk.Combobox(self, width=25, state='readonly')
         self.updatePasswordCBox()
         self.passwordCBox.bind('<<ComboboxSelected>>', self.retPassword)
-        self.passwordCBox.grid(row=row, column=1, pady=10, padx=10)
+        self.passwordCBox.grid(row=row, column=1, pady=10)
 
         row += 1
         Button(self, text="Submit", command=self.submit, width=30).grid(
