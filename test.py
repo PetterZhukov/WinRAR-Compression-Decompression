@@ -3,7 +3,6 @@ from classDesign.password import password
 import functionModel.DeCompressModel as decom
 from UI.MainPage import *
 from tkinter import *
-import functionModel.initModel as initModel
 from tkinter import *
 import fileIO.fileDel as fileDel
 

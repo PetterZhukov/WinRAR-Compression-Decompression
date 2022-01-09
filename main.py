@@ -4,6 +4,8 @@ from UI.MainPage import *
 from tkinter import *
 import fileIO.fileDel as fileDel
 import main_initStructure
+
+
 class process:
     def __init__(self, name):
         self.name = name
@@ -34,7 +36,13 @@ try:
         root.mainloop()
 except:
     print("异常 -error")
-    main_initStructure.main_Init()
-    messagebox.showwarning("警告","打开主界面遇到了问题,可以尝试通过初始化页面初始化设置来尝试解决问题")
+    root.destroy()
+    initRoot=main_initStructure.main_Frame()
+    messagebox.showwarning(
+        title="警告",message="打开主界面遇到了问题,可以尝试通过初始化页面初始化设置来尝试解决问题\n完成初始化后请重启程序"
+        ,parent=initRoot)
+    initRoot.mainloop()
+    
+
 
 system("pause")

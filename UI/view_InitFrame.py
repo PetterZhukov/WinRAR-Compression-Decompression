@@ -51,14 +51,21 @@ class InitFrame(Frame):
         row += 1
         Button(self, text="初始化密码设置",
                command=lambda:
-               initModel.initFile_Password() if
+               (lambda: (
+                   initModel.initFile_Password(),
+                   tkinter.messagebox.showinfo("提示", "初始化密码设置成功"))
+                )() if
                tkinter.messagebox.askokcancel("警告", "存储的密码都会被初始化，是否继续?") else None
                ).grid(
             row=row, column=0, stick=W, pady=2)
 
         Button(self, text="初始化路径设置",
                command=lambda:
-               initModel.initFile_Location() if
+               (lambda: (
+                   initModel.initFile_Location(),
+                   tkinter.messagebox.showinfo("提示", "初始化路径设置成功"))
+                )()
+                   if
                tkinter.messagebox.askokcancel("警告", "存储的路径都会被初始化，是否继续?") else None
                ).grid(
             row=row, column=1, stick=W, pady=2, padx=10)
@@ -66,7 +73,10 @@ class InitFrame(Frame):
         row += 1
         Button(self, text="初始化其他设置",
                command=lambda:
-               initModel.initFile_Flag() if
+               (lambda: (
+                   initModel.initFile_Flag(), tkinter.messagebox.showinfo("提示", "初始化其他设置成功"))
+                )()
+                   if
                tkinter.messagebox.askokcancel("警告", "存储的其他设置都会被初始化，是否继续?") else None
                ).grid(
             row=row, column=0, stick=W, pady=2)
@@ -74,7 +84,11 @@ class InitFrame(Frame):
         row += 1
         Button(self, text="初始化所有设置",
                command=lambda:
-               initModel.initFileStructure_AllFile() if
+               (lambda: (
+                   initStructureModel.initFileStructure_AllFile(),
+                   tkinter.messagebox.showinfo("提示", "初始化所有设置成功"))
+                )()
+                   if
                tkinter.messagebox.askokcancel("警告", "存储的所有的设置都会被初始化，是否继续?") else None
                ).grid(
             row=row, column=0, stick=W, pady=2, columnspan=2, sticky=EW)
@@ -90,7 +104,10 @@ class InitFrame(Frame):
         row += 1
         Button(self, text="初始化工作区",
                command=lambda:
-               initModel.clear_workspace() if
+               (lambda: (
+                   initModel.clear_workspace(), tkinter.messagebox.showinfo("提示", "初始化工作区成功"))
+                )()
+                   if
                tkinter.messagebox.askokcancel("警告", "工作区的文件将会被清空，是否继续?") else None
                ).grid(
             row=row, column=0, stick=W, pady=2)
@@ -98,8 +115,11 @@ class InitFrame(Frame):
         row += 1
         Button(self, text="初始化输出区",
                command=lambda:
-               initModel.clear_output() if
-               tkinter.messagebox.askokcancel("警告", "输出区的文件将被清空，是否继续?") else None
+               (lambda: (initModel.clear_output(), tkinter.messagebox.showinfo("提示", "初始化输出区成功"))
+                )()
+               if
+               tkinter.messagebox.askokcancel("警告", "输出区的文件将被清空，是否继续?")
+               else None
                ).grid(
             row=row, column=0, stick=W, pady=2)
         Button(self, text="预览位置", command=lambda: tkinter.filedialog.askdirectory(initialdir=const.outputPath)

@@ -1,14 +1,14 @@
 from tkinter import *
 import UI.view_InitFrame
 
-def main_Init():
+def main_Frame()->Tk:
     root=Tk()
-    root.geometry('600x550+500+240')
+    root.geometry('600x500+600+240')
     root.title("初始化程序")
-
     UI.view_InitFrame.InitFrame(root).pack()
-    root.mainloop()
+    return root
 
 if __name__=='__main__':
-    main_Init()
+    root=main_Frame()
+    root.mainloop()
 
