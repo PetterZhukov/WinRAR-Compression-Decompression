@@ -1,5 +1,6 @@
 import os.path
 from tkinter import ttk
+from tkinter import messagebox
 import tkinter.filedialog
 from tkinter import *
 from tkinter.messagebox import showinfo
@@ -25,7 +26,9 @@ class CompressFrame(Frame):
         self.FromIsFile = BooleanVar()
 
         self.passwordDict = fileIO.PasswordJson.getPasswordLoad_byFile()
-        self.LocationDict = fileIO.LocationJson.getLocationLoad_byFile()
+        self.LocationCompressFromDict=fileIO.LocationJson.getCompressFrom()
+        self.LocationCompressToDict = fileIO.LocationJson.getCompressTo()
+
         self.creatPage()
 
     def creatPage(self):
@@ -44,7 +47,8 @@ class CompressFrame(Frame):
         row += 1
         Label(self, text="压缩",
               font=('宋体', 20, 'bold')).grid(row=row)
-
+        Button(self, text="刷新设置", command=self.Refresh).grid(
+            row=row, column=2)
         row += 1
         ttk.Separator(self, orient='horizontal').grid(
             row=row, column=0, rowspan=1, columnspan=4, sticky='EW', pady=5, padx=5)
@@ -67,6 +71,14 @@ class CompressFrame(Frame):
             row=row, column=2)
 
         row += 1
+        Label(self, text="路径选择 : ").grid(row=row, sticky=E, padx=10)
+        # ttk combox
+        self.LocationCompressFromCBox = ttk.Combobox(self)
+        self.updateCompressFromCBox()
+        self.LocationCompressFromCBox.bind('<<ComboboxSelected>>', self.retLocationCompressFrom)
+        self.LocationCompressFromCBox.grid(row=row, column=1, pady=10, sticky=EW, padx=10)
+        
+        row += 1
         Label(self, text="解压路径").grid(row=row, sticky=W, padx=10)
 
         row += 1
@@ -80,12 +92,10 @@ class CompressFrame(Frame):
         row += 1
         Label(self, text="路径选择 : ").grid(row=row, sticky=E, padx=10)
         # ttk combox
-        self.LocationCBox = ttk.Combobox(self, state='readonly')
-        self.LocationCBox['values'] = (
-            "选择存储的路径", *[f"{a} : {b}" for a, b in self.LocationDict.items()])
-        self.LocationCBox.current(0)
-        self.LocationCBox.bind('<<ComboboxSelected>>', self.retLocation)
-        self.LocationCBox.grid(row=row, column=1, pady=10, sticky=EW, padx=10)
+        self.LocationCompressToCBox = ttk.Combobox(self)
+        self.updateCompressToCBox()
+        self.LocationCompressToCBox.bind('<<ComboboxSelected>>', self.retLocationCompressTo)
+        self.LocationCompressToCBox.grid(row=row, column=1, pady=10, sticky=EW, padx=10)
 
         row += 1
         Label(self, text="解压文件名").grid(row=row, sticky=W, padx=10)
@@ -114,11 +124,7 @@ class CompressFrame(Frame):
         Label(self, text="密码选择 : ").grid(row=row, sticky=E, padx=10)
         # ttk combox
         self.passwordCBox = ttk.Combobox(self, width=25, state='readonly')
-        self.passwordCBox['values'] = (
-            "选择存储的密码", *list(
-                map(lambda o: f"{o[0]} : {o[1].password1} {o[1].password2}",
-                    self.passwordDict.items())))
-        self.passwordCBox.current(0)
+        self.updatePasswordCBox()
         self.passwordCBox.bind('<<ComboboxSelected>>', self.retPassword)
         self.passwordCBox.grid(row=row, column=1, pady=10, padx=10)
 
@@ -243,7 +249,7 @@ class CompressFrame(Frame):
 
     def ReadDefaultLocation(self):
         "读默认地址"
-        self.LocationDict.get(const.Location_defaultName, "")
+        self.LocationCompressToDict.get(const.Location_defaultName, "")
 
     def retPassword(self, *args):
         "从cbox处获得password并set"
@@ -252,13 +258,53 @@ class CompressFrame(Frame):
                 self.passwordCBox.current()-1]]
             self.password1.set(s.password1)
             self.password2.set(s.password2)
-
-    def retLocation(self, *args):
-        "从cbox处获得Location并set"
-        if self.LocationCBox.current() > 0:
-            s = self.LocationDict[tuple(self.LocationDict.keys())[
-                self.LocationCBox.current()-1]]
+    def retLocationCompressFrom(self, *args):
+        "从cbox处获得LocationCompressFrom并set"
+        if self.LocationCompressFromCBox.current() > 0:
+            s = self.LocationCompressFromDict[tuple(self.LocationCompressFromDict.keys())[
+                self.LocationCompressFromCBox.current()-1]]
+            self.From.set(s)
+    def retLocationCompressTo(self, *args):
+        "从cbox处获得LocationCompressTo并set"
+        if self.LocationCompressToCBox.current() > 0:
+            s = self.LocationCompressToDict[tuple(self.LocationCompressToDict.keys())[
+                self.LocationCompressToCBox.current()-1]]
             self.ToDirname.set(s)
+
+    def updatePasswordCBox(self):
+        "更新Password CBox"
+        self.passwordCBox['values'] = (
+            "选择存储的密码", *list(
+                map(lambda o: f"{o[0]} : {o[1].password1} {o[1].password2}",
+                    self.passwordDict.items())))
+        self.passwordCBox.current(0)
+
+    def updateCompressFromCBox(self):
+        "更新CompressFrom CBox"
+        self.LocationCompressFromCBox['values'] = (
+            "选择存储的路径", *[f"{a} : {b}" for a, b in self.LocationCompressFromDict.items()])
+        self.LocationCompressFromCBox.current(0)
+
+    def updateCompressToCBox(self):
+        "更新CompressTo CBox"
+        self.LocationCompressToCBox['values'] = (
+            "选择存储的路径", *[f"{a} : {b}" for a, b in self.LocationCompressToDict.items()])
+        self.LocationCompressToCBox.current(0)
+
+
+
+    def Refresh(self):
+        "刷新3个选择框"
+        self.passwordDict = fileIO.PasswordJson.getPasswordLoad_byFile()
+        self.LocationCompressFromDict=fileIO.LocationJson.getCompressFrom()
+        self.LocationCompressToDict = fileIO.LocationJson.getCompressTo()
+
+        self.updateCompressFromCBox()
+        self.updateCompressFromCBox()
+        self.updatePasswordCBox()
+        messagebox.showinfo("提示","已刷新")
+
+
 
     def submit(self):
         """
