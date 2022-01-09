@@ -10,6 +10,7 @@ from fileIO.fileStructure import getStrOfFilePath, openFileInOS
 from functionModel.checkModel import creatCheckStr
 import fileIO.fileIO as fileIO
 
+
 class CompressFrame(Frame):
 
     def __init__(self, master=None):
@@ -81,10 +82,10 @@ class CompressFrame(Frame):
         # ttk combox
         self.LocationCBox = ttk.Combobox(self, state='readonly')
         self.LocationCBox['values'] = (
-            "选择存储的路径", *[f"{a} : {b}" for a,b in self.LocationDict.items()])
+            "选择存储的路径", *[f"{a} : {b}" for a, b in self.LocationDict.items()])
         self.LocationCBox.current(0)
         self.LocationCBox.bind('<<ComboboxSelected>>', self.retLocation)
-        self.LocationCBox.grid(row=row, column=1, pady=10,sticky=EW,padx=10)
+        self.LocationCBox.grid(row=row, column=1, pady=10, sticky=EW, padx=10)
 
         row += 1
         Label(self, text="解压文件名").grid(row=row, sticky=W, padx=10)
@@ -119,7 +120,7 @@ class CompressFrame(Frame):
                     self.passwordDict.items())))
         self.passwordCBox.current(0)
         self.passwordCBox.bind('<<ComboboxSelected>>', self.retPassword)
-        self.passwordCBox.grid(row=row, column=1, pady=10,padx=10)
+        self.passwordCBox.grid(row=row, column=1, pady=10, padx=10)
 
         row += 1
         Button(self, text="Submit", command=self.submit, width=30).grid(
@@ -198,25 +199,35 @@ class CompressFrame(Frame):
         "可视化获取文件名"
         return os.path.normpath(tkinter.filedialog.askopenfilename())
 
-    def tk_getDirname(self) -> str:
-        "可视化获取文件夹名"
+    def tk_getFromDirname(self) -> str:
+        "可视化获取From文件夹名"
         if self.checkFrom() == None:
             key = os.path.split(self.From.get())[0]
             return os.path.normpath(tkinter.filedialog.askdirectory(initialdir=key))+'\\'
         else:
-            return os.path.normpath(tkinter.filedialog.askdirectory())+'\\'
-        
+            return os.path.normpath(tkinter.filedialog.askdirectory(initialdir=".//"))+'\\'
+
+    def tk_getToDirname(self) -> str:
+        "可视化获取To文件夹名"
+        if self.checkTo() == None:
+            key = os.path.split(self.ToDirname.get())[0]
+            return os.path.normpath(tkinter.filedialog.askdirectory(initialdir=key))+'\\'
+        elif self.checkFrom() == None:
+            key = os.path.split(self.From.get())[0]
+            return os.path.normpath(tkinter.filedialog.askdirectory(initialdir=key))+'\\'
+        else:
+            return os.path.normpath(tkinter.filedialog.askdirectory(initialdir=".//"))+'\\'
 
     def previewFromLocation(self):
         "预览from"
         if self.FromIsFile.get():
             self.From.set(self.tk_getFilename())
         else:
-            self.From.set(self.tk_getDirname())
+            self.From.set(self.tk_getFromDirname())
 
     def previewToLocation(self):
         "预览to"
-        self.ToDirname.set(self.tk_getDirname())
+        self.ToDirname.set(self.tk_getToDirname())
 
     def ReadDefaultPassword1(self):
         "读默认密码1"
@@ -232,7 +243,7 @@ class CompressFrame(Frame):
 
     def ReadDefaultLocation(self):
         "读默认地址"
-        self.LocationDict.get(const.Location_defaultName,"")
+        self.LocationDict.get(const.Location_defaultName, "")
 
     def retPassword(self, *args):
         "从cbox处获得password并set"

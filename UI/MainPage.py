@@ -20,8 +20,13 @@ class MainPage:
         self.page.pack()
         self.__initPage()
         self.__creatMenu()
-        self.openPage(self.OriginPage)
-        self.__showFirstMessagebox()
+        
+        if FlagJson.getFirstOpen():
+            self.openPage(self.OriginPage)
+            self.__showFirstMessagebox()
+            FlagJson.setFirstOpen(False)
+        else:
+            self.openPage(self.PageDict.get(FlagJson.getFirstPage(),self.OriginPage))
 
     def __creatMenu(self):
         menubar = Menu(self.root)
@@ -51,15 +56,24 @@ class MainPage:
         self.EditPasswordPage = EditPasswordFrame(self.root)
         self.EditLocationPage = EditLocationFrame(self.root)
 
+        self.PageDict = {
+            const.firstPageName_Origin: self.OriginPage,
+            const.firstPageName_Init: self.InitPage,
+            const.firstPageName_EditLocation: self.EditLocationPage,
+            const.firstPageName_EditPassword: self.EditPasswordPage,
+            const.firstPageName_Compress: self.CompressPage,
+            # const.firstPageName_DeCompress: self.DeCompressPage
+        }
+
     def openPage(self, page):
         self.page.pack_forget()
         self.page = page
         self.page.pack()
 
     def __showFirstMessagebox(self):
-        if FlagJson.getFirstOpen():
-            showinfo("欢迎",
-                     """ 欢迎使用本程序
+
+        showinfo("欢迎",
+                 """ 欢迎使用本程序
     教程和注意事项请看"起始页"
     "初始化"用于初始化程序的文件和结构
     "编辑"用于更改存储的默认信息
@@ -69,4 +83,3 @@ class MainPage:
     (本提示只会出现一次,使用愉快)
                                         --by PetterZ
 """)
-            FlagJson.setFirstOpen(False)

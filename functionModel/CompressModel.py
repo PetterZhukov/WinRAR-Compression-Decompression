@@ -84,16 +84,17 @@ class Compress:
         from1 = os.path.normpath(os.path.abspath(From))
         to1 = os.path.abspath(os.path.normpath(os.path.join(
             const.workspacePath, workspaceName, ToFilename+f' {password1}')+'.rar'))
-
+        commentsPath=os.path.abspath(os.path.normpath(os.path.join(
+            const.workspacePath, workspaceName+"comments")))
         # 压缩1
         if rar_compress(1, from1, to1, password1) not in const.go_no:
             print("压缩中发生错误，中断")
             return False, "压缩中发生错误，中断"
 
         # 加注释1
-        writeInfoToComments(const.commentsPath,
+        writeInfoToComments(commentsPath,
                             Comments.creatcomments1(password1))
-        rar_addComments(1, to1, const.commentsPath)
+        rar_addComments(1, to1, commentsPath)
 
         # 上锁1
         rar_Lock(1, to1)
@@ -113,9 +114,9 @@ class Compress:
         print(f"   to2 = {to2}")
 
         # 加注释2
-        writeInfoToComments(const.commentsPath,
+        writeInfoToComments(commentsPath,
                             Comments.creatcomments2(password1, password2))
-        rar_addComments(2, to2, const.commentsPath)
+        rar_addComments(2, to2, commentsPath)
 
         # winrar上不了锁
 
