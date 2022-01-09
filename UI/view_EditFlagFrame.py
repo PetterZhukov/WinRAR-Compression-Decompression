@@ -20,13 +20,16 @@ class EditFlagFrame(Frame):
         Frame.__init__(self, master)
         self.root = master
 
-        self.passwordName = StringVar()
-        self.password1 = StringVar()
-        self.password2 = StringVar()
-        self.passwordDict = fileIO.PasswordJson.getPasswordLoad_byFile()
+        self.FirstPageTuple = (("开始页", const.firstPageName_Origin),
+                          ("初始化页", const.firstPageName_Init),
+                          ("压缩", const.firstPageName_Compress),
+                          ("解压", const.firstPageName_DeCompress)
+                          )
 
+        
+        self.nowFirstPage=StringVar()
         self.creatPage()
-
+        self.updatenowFirstPage()
     def creatPage(self):
         row = 0
         Label(self).grid(row=row)
@@ -41,56 +44,35 @@ class EditFlagFrame(Frame):
             row=row, column=0, rowspan=1, columnspan=4, sticky='EW', pady=5, padx=5)
 
         row += 1
-        Label(self, text="删除", font=('宋体', 13, 'bold')).grid(
+        Label(self, text="设置打开时显示的页面", font=('宋体', 13, 'bold')).grid(
             row=row, sticky=W, columnspan=2, padx=5)
-        self.passwordCBox = Combobox(self, width=25, state='readonly')
-        self.update_passwordCBox()
-        self.passwordCBox.current(0)
-        self.passwordCBox.grid(row=row, column=1, pady=10)
-        Button(self, text="提交删除", command=self.del_password).grid(
-            row=row, column=2, stick=W, pady=5,padx=5)
-
         
+        
+        row+=1
+        Label(self,text="当前开始页 : ").grid(row=row,sticky=E)
+        Entry(self,state='disabled',textvariable=self.nowFirstPage).grid(row=row,column=1)
 
+        row+=1
+        self.FirstPageChoose = Combobox(self, width=25, state='readonly')
+        self.update_passwordCBox()
+        self.FirstPageChoose.grid(row=row, column=1, pady=10)
+        Button(self, text="选择当前页", command=self.setFirstPage).grid(
+            row=row, column=2, stick=W, pady=5, padx=5)
 
-    def del_password(self):
-        "删除某行password"
-        if tkinter.messagebox.askokcancel("提示", "确认要提交删除？"):
-            index = self.passwordCBox.current()
-            keyName=list(self.passwordDict.keys())[index]
-            if keyName==const.password_defulatName:
-                tkinter.messagebox.showerror("警告","不能更改默认值")
-            else:
-                self.passwordDict.pop(keyName)
-                self.update_passwordCBox()
-                self.update_PasswordJson()
-                tkinter.messagebox.showinfo("提示", "删除成功")
-
-    def add_password(self):
-        "增加password"
-        def getDefaultName():
-            for i in range(1, int(1e5)):
-                if ("密码"+str(i)) not in self.passwordDict.keys():
-                    return "密码"+str(i)
-            return "密码"
-
-        if tkinter.messagebox.askokcancel("提示", "确认要提交增加？"):
-            if self.passwordName.get() == "":
-                self.passwordName.set(getDefaultName())
-            if self.passwordName.get() in self.passwordDict.keys():
-                tkinter.messagebox.showerror("警告", "密码设定名字不能重名")
-            else:
-                pClass = password(self.passwordName.get(),
-                                  self.password1.get(), self.password2.get())
-                self.passwordDict[pClass.name] = pClass
-                self.update_passwordCBox()
-                self.update_PasswordJson()
-                tkinter.messagebox.showinfo("成功", "成功增加密码设定")
-
+    def updatenowFirstPage(self):
+        ch='Serach Fail'
+        get=fileIO.FlagJson.getFirstPage()
+        for i in self.FirstPageTuple:
+            if i[1]==get:
+                ch=i[0]
+                break
+        self.nowFirstPage.set(ch)
     def update_passwordCBox(self):
-        self.passwordCBox['values'] = tuple(map(lambda o: f"{o[0]} : {o[1].password1} {o[1].password2}",
-                                                self.passwordDict.items())) 
-                                            
-    def update_PasswordJson(self):
-        "将更改提交到password.json"
-        fileIO.PasswordJson.pushPasswordDump_ToFile(list(self.passwordDict.values()))                         
+        self.FirstPageChoose['values'] = self.FirstPageTuple
+        self.FirstPageChoose.current(0)
+        
+    def setFirstPage(self):
+        fileIO.FlagJson.setFirstPage(self.FirstPageTuple[self.FirstPageChoose.current()][1])
+        self.updatenowFirstPage()
+        tkinter.messagebox.showinfo("提示","设置完成")
+

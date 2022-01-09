@@ -7,7 +7,7 @@ from UI.view_OriginFrame import *
 from UI.view_EditPasswordFrame import *
 from UI.view_EditLocationFrame import *
 from UI.view_InitFrame import *
-
+from UI.view_EditFlagFrame import *
 from fileIO.fileIO import FlagJson
 
 
@@ -40,6 +40,8 @@ class MainPage:
             label="修改密码", command=lambda: self.openPage(self.EditPasswordPage))
         editDefault.add_command(
             label="修改地址", command=lambda: self.openPage(self.EditLocationPage))
+        editDefault.add_command(
+            label="修改其他设置", command=lambda: self.openPage(self.EditFlagPage))
         menubar.add_cascade(label="编辑", menu=editDefault)
         menubar.add_command(
             label="压缩", command=lambda: self.openPage(self.CompressPage))
@@ -55,14 +57,16 @@ class MainPage:
         self.CompressPage = CompressFrame(self.root)
         self.EditPasswordPage = EditPasswordFrame(self.root)
         self.EditLocationPage = EditLocationFrame(self.root)
+        self.EditFlagPage=EditFlagFrame(self.root)
 
         self.PageDict = {
             const.firstPageName_Origin: self.OriginPage,
             const.firstPageName_Init: self.InitPage,
             const.firstPageName_EditLocation: self.EditLocationPage,
             const.firstPageName_EditPassword: self.EditPasswordPage,
+            const.firstPageName_EditFlag:self.EditFlagPage,
             const.firstPageName_Compress: self.CompressPage,
-            const.firstPageName_DeCompress: self.DeCompressPage
+            const.firstPageName_DeCompress: self.DeCompressPage,            
         }
 
     def openPage(self, page):
