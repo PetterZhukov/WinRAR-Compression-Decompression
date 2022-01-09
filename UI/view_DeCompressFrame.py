@@ -130,7 +130,7 @@ class DeCompressFrame(Frame):
         # ttk combox
         self.cbox = ttk.Combobox(self, width=25, state='readonly')
         self.updatePasswordCBox()
-        self.cbox.current(0)
+
         self.cbox.bind('<<ComboboxSelected>>', self.retPassword)
         self.cbox.grid(row=row, column=1, pady=10)
 
@@ -295,6 +295,7 @@ class DeCompressFrame(Frame):
             "选择存储的密码", *list(
                 map(lambda o: f"name=\"{o[0]}\": {o[1].password1} {o[1].password2}",
                     self.passwordDict.items())))
+        self.cbox.current(0)
 
     def updateDeCompressToCBox(self):
         "更新DeCompressTo CBox"
