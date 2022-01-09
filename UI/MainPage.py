@@ -1,5 +1,4 @@
 from tkinter import *
-from tkinter import font
 
 from UI.view_CompressFrame import *
 from UI.view_DeCompressFrame import *

@@ -1,1 +1,11 @@
-{"CompressFrom": {"Default": ".//data_output//DeCompress//"}, "CompressTo": {"Default": ".//data_output//Compress//"}, "DeCompressTo": {"Default": ".//data_output//DeCompress//"}}
+{
+    "CompressFrom": {
+        "Default": ".//data_output//DeCompress//"
+    },
+    "CompressTo": {
+        "Default": ".//data_output//Compress//"
+    },
+    "DeCompressTo": {
+        "Default": ".//data_output//DeCompress//"
+    }
+}
