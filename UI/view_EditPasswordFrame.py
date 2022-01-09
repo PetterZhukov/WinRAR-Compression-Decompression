@@ -45,7 +45,7 @@ class EditPasswordFrame(Frame):
             row=row, sticky=W, columnspan=2, padx=5)
         self.passwordCBox = Combobox(self, width=25, state='readonly')
         self.update_passwordCBox()
-        self.passwordCBox.current(0)
+        
         self.passwordCBox.grid(row=row, column=1, pady=10)
         Button(self, text="提交删除", command=self.del_password).grid(
             row=row, column=2, stick=W, pady=5,padx=5)
@@ -69,48 +69,6 @@ class EditPasswordFrame(Frame):
         Button(self, text="提交增加", command=self.add_password).grid(
             row=row, column=1, stick=W, pady=5)
         
-
-        # row += 1
-        # Button(self, text="init readme.txt", command=self.init_readme).grid(
-        #     row=row, stick=W, pady=2)
-
-        # row += 1
-        # Label(self, text="默认压缩到:").grid(row=row, sticky=W)
-
-        # row += 1
-        # Entry(self, textvariable=self.defaultPath).grid(row=row)
-        # Button(self, text="预览",
-        #        command=self.get_Location).grid(row=row, column=1, stick=W, pady=2, padx=5)
-
-        # Button(self, text="修改默认压缩路径",
-        #        command=self.change_defaultLocation).grid(row=row, column=2, stick=W, pady=2)
-
-        # row += 1
-        # Button(self, text="初始化所有数据文件", command=self.init_readme).grid(
-        #     row=row, stick=W, pady=2)
-
-        # row += 1
-        # Button(self, text="建立文件夹结构", command=self.init_readme).grid(
-        #     row=row, stick=W, pady=2)
-
-        # row += 1
-        # Button(self, text="清空程序工作区(避免内存泄漏)", command=self.initWorkspace).grid(
-        #     row=row, stick=W, pady=2)
-
-    # def get_Location(self):
-    #     "可视化选择文件夹"
-    #     self.defaultPath.set(tkinter.filedialog.askdirectory())
-
-    # def read_defaultLocation(self):
-    #     "从DefaultLocationPath中读默认路径"
-    #     self.defaultPath.set(LocationJson.getLocationDefault())
-
-    # def change_defaultLocation(self):
-    #     "get dirname"
-    #     with open(const.DefaultLocationPath, 'w') as f:
-    #         f.write(os.path.normpath(self.defaultPath.get())+'\\')
-
-
     def del_password(self):
         "删除某行password"
         if tkinter.messagebox.askokcancel("提示", "确认要提交删除？"):
@@ -120,8 +78,8 @@ class EditPasswordFrame(Frame):
                 tkinter.messagebox.showerror("警告","不能更改默认值")
             else:
                 self.passwordDict.pop(keyName)
-                self.update_passwordCBox()
                 self.update_PasswordJson()
+                self.update_passwordCBox()
                 tkinter.messagebox.showinfo("提示", "删除成功")
 
     def add_password(self):
@@ -141,14 +99,16 @@ class EditPasswordFrame(Frame):
                 pClass = password(self.passwordName.get(),
                                   self.password1.get(), self.password2.get())
                 self.passwordDict[pClass.name] = pClass
-                self.update_passwordCBox()
                 self.update_PasswordJson()
+                self.update_passwordCBox()
                 tkinter.messagebox.showinfo("成功", "成功增加密码设定")
 
     def update_passwordCBox(self):
+        self.passwordDict = fileIO.PasswordJson.getPasswordLoad_byFile()
         self.passwordCBox['values'] = tuple(map(lambda o: f"{o[0]} : {o[1].password1} {o[1].password2}",
                                                 self.passwordDict.items())) 
-                                            
+        self.passwordCBox.current(0)
+
     def update_PasswordJson(self):
         "将更改提交到password.json"
         fileIO.PasswordJson.pushPasswordDump_ToFile(list(self.passwordDict.values()))                         

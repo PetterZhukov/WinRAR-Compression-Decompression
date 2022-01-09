@@ -21,27 +21,27 @@
 - [ ] 更改为下拉框选择默认路径，json结构 -> ttk , 文件存储,constValue
 - [ ] 写产生文件树的函数,更新结构.txt
 - [ ] 增加功能v4
-    - [ ] 初始提示页面
-    - [ ] 初始化/增加/删除 设置
-    - [ ] 设置打开的时候开始哪个页面   -Flag.json
-    - [ ] 自定义Location            -Loctaion.json
+    - [x] 初始提示页面
+    - [x] 初始化/增加/删除 设置
+    - [x] 设置打开的时候开始哪个页面   -Flag.json
+    - [x] 自定义Location            -Loctaion.json
     - [ ] 自定义内外层压缩格式
     - [ ] 是否产生命令行
-    - [ ] 读写交互放在单独的文件夹里面
+    - [x] 读写交互放在单独的文件夹里面
     - [ ] 调包规范化
     - [ ] 有的showinfo改成showerror,showwarning    https://www.cnblogs.com/buchizaodian/p/7076964.html
     - [ ] 除去mainpage的注释
-    - [ ] 除去origin的注释
-    - [ ] 重写 compress和decompress
-    - [ ] 修改 FirstPage
+    - [x] 除去origin的注释
+    - [x] 重写 compress和decompress
+    - [x] 修改 FirstPage
     - [x] 补上comments
-    - [ ] 重新读写json要刷新其他读取json的页面 ->手动刷新 / 每次打开都自动刷新
+    - [x] 重新读写json要刷新其他读取json的页面 ->手动刷新 / 每次打开都自动刷新
     - [ ] Location分为 CompressFrom,CompressTo,DeCompressTo
     - [ ] 修改路径/密码的条得可编辑且够长够宽
     - [x] 保护default
     - [x] data_output分为解压和压缩
-    - [ ] 修改flag
-    - [ ] password 也先更新json然后从json拿取
+    - [x] 修改flag
+    - [x] password 也先更新json然后从json拿取
     - [ ] 压缩到的路径应该是Compress
     - [ ] Decompress也需要分可视化get
     - [x] Compress 默认位置失灵
@@ -49,6 +49,7 @@
     - [ ] 优化import结构（太乱）
     - [ ] current(0) password 多了
     - [ ] 修改提示"选择存储的路径"
+    - [ ] origin先运行，然后要运行的时候才创建其他部分，保证安全
 - [ ] 码云的拉取失败了，怎么以本地为主创建仓库
 
 # 注意事项
