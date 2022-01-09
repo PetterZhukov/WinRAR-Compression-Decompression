@@ -8,6 +8,8 @@
 */__pycache__/
 
 /data_workspace/*
-/data_workspace/output/Compress/*
-/data_workspace/output/DeCompress/*
+
+/data_output/*
+/data_output/output/Compress/*
+/data_output/output/DeCompress/*
 

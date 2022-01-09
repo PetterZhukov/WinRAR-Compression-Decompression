@@ -114,45 +114,7 @@ class InitFrame(Frame):
         Button(self, text="预览位置", command=lambda:tkinter.filedialog.askdirectory(initialdir=const.outputPath)
                ).grid(
             row=row, column=1, sticky=W)
-        # row += 1
-        # Button(self, text="init readme.txt", command=self.init_readme).grid(
-        #     row=row, stick=W, pady=2)
 
-        # row += 1
-        # Label(self, text="默认压缩到:").grid(row=row, sticky=W)
-
-        # row += 1
-        # Entry(self, textvariable=self.defaultPath).grid(row=row)
-        # Button(self, text="预览",
-        #        command=self.get_Location).grid(row=row, column=1, stick=W, pady=2, padx=5)
-
-        # Button(self, text="修改默认压缩路径",
-        #        command=self.change_defaultLocation).grid(row=row, column=2, stick=W, pady=2)
-
-        # row += 1
-        # Button(self, text="初始化所有数据文件", command=self.init_readme).grid(
-        #     row=row, stick=W, pady=2)
-
-        # row += 1
-        # Button(self, text="建立文件夹结构", command=self.init_readme).grid(
-        #     row=row, stick=W, pady=2)
-
-        # row += 1
-        # Button(self, text="清空程序工作区(避免内存泄漏)", command=self.initWorkspace).grid(
-        #     row=row, stick=W, pady=2)
-
-    # def get_Location(self):
-    #     "可视化选择文件夹"
-    #     self.defaultPath.set(tkinter.filedialog.askdirectory())
-
-    # def read_defaultLocation(self):
-    #     "从DefaultLocationPath中读默认路径"
-    #     self.defaultPath.set(LocationJson.getLocationDefault())
-
-    # def change_defaultLocation(self):
-    #     "get dirname"
-    #     with open(const.DefaultLocationPath, 'w') as f:
-    #         f.write(os.path.normpath(self.defaultPath.get())+'\\')
 
     def init_readme_open(self):
         "init readme 并在os中打开"

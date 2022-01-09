@@ -58,6 +58,22 @@ class OriginFrame(Frame):
             row=row, column=0, rowspan=1, columnspan=5, sticky='EW', pady=20)
 
         row += 1
+        Label(self, text="点击以进行最开始的初始化", font=('宋体', 10, 'bold')).grid(
+            row=row, sticky=W, columnspan=2)
+
+        row+=1
+        Button(self, text="初始化以继续",
+               command=lambda:
+               initModel.initFileStructure_AllFile() if
+               tkinter.messagebox.askokcancel("初始化", "初始化文件结构和配置文件") else None
+               ).grid(
+            row=row, column=0, stick=W, pady=2,sticky=EW)
+        
+        row += 1
+        ttk.Separator(self, orient='horizontal').grid(
+            row=row, column=0, rowspan=1, columnspan=5, sticky='EW', pady=20)
+        
+        row += 1
         Label(self, text="点击查看说明文档", font=('宋体', 10, 'bold')).grid(
             row=row, sticky=W, columnspan=2)
             
