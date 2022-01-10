@@ -44,5 +44,3 @@ except:
     initRoot.mainloop()
     
 
-
-system("pause")
