@@ -8,7 +8,7 @@ import constValue.constValue as const
 
 import fileIO.fileIO as fileIO
 
-
+NameEntryTip="留空会自动填写名字"
 class EditLocationFrame(Frame):
     def __init__(self, master=None):
         Frame.__init__(self, master)
@@ -66,7 +66,23 @@ class EditLocationFrame(Frame):
 
         row += 1
         Label(self, text="路径名字(不能重复) : ").grid(row=row, sticky=E)
-        Entry(self, textvariable=self.LocationName).grid(
+
+        self.NameEntry=Entry(self, textvariable=self.LocationName)
+        def puts_black(_):
+            if self.LocationName.get()==NameEntryTip:
+                self.LocationName.set("")
+            self.NameEntry.config(fg='black')
+
+        def showTips_grey(_):
+            if self.LocationName.get()=="":
+                self.NameEntry.config(fg='grey')
+                self.LocationName.set(NameEntryTip)
+        
+        self.NameEntry.bind("<FocusIn>", puts_black)
+        self.NameEntry.bind("<FocusOut>", showTips_grey)
+        showTips_grey(_='')
+
+        self.NameEntry.grid(
             row=row, column=1, sticky=W)
 
         row += 1
@@ -115,7 +131,8 @@ class EditLocationFrame(Frame):
             return "路径"
 
         if tkinter.messagebox.askokcancel("提示", "确认要提交增加？"):
-            if self.LocationName.get() == "":
+            if self.LocationName.get() == "" or self.LocationName.get()==NameEntryTip:
+                self.NameEntry.config(fg='black')
                 self.LocationName.set(getDefaultName())
             if self.LocationName.get() in self.LocationDict.keys():
                 tkinter.messagebox.showwarning("警告", "路径设定名字不能重名")

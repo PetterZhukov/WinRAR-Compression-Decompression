@@ -8,7 +8,7 @@ import constValue.constValue as const
 from classDesign.password import password
 import fileIO.fileIO as fileIO
 
-
+NameEntryTip="留空会自动填写名字"
 class EditPasswordFrame(Frame):
     def __init__(self, master=None):
         Frame.__init__(self, master)
@@ -49,7 +49,21 @@ class EditPasswordFrame(Frame):
 
         row += 1
         Label(self, text="密码名字(不能重复) : ").grid(row=row, sticky=E)
-        Entry(self, textvariable=self.passwordName).grid(row=row, column=1)
+        self.NameEntry=Entry(self, textvariable=self.passwordName)
+        def puts_black(_):
+            if self.passwordName.get()==NameEntryTip:
+                self.passwordName.set("")
+            self.NameEntry.config(fg='black')
+
+        def showTips_grey(_):
+            if self.passwordName.get()=="":
+                self.NameEntry.config(fg='grey')
+                self.passwordName.set(NameEntryTip)
+        
+        self.NameEntry.bind("<FocusIn>", puts_black)
+        self.NameEntry.bind("<FocusOut>", showTips_grey)
+        showTips_grey(_='')
+        self.NameEntry.grid(row=row, column=1)
 
         row += 1
         Label(self, text="密码1(内层) : ").grid(row=row, sticky=E)
@@ -85,7 +99,8 @@ class EditPasswordFrame(Frame):
             return "密码"
 
         if tkinter.messagebox.askokcancel("提示", "确认要提交增加？"):
-            if self.passwordName.get() == "":
+            if self.passwordName.get() == "" or self.passwordName.get()==NameEntryTip:
+                self.NameEntry.config(fg='black')
                 self.passwordName.set(getDefaultName())
             if self.passwordName.get() in self.passwordDict.keys():
                 tkinter.messagebox.showwarning("警告", "密码设定名字不能重名")
