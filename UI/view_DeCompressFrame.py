@@ -165,13 +165,14 @@ class DeCompressFrame(Frame):
     def checkTo(self):
         "check self.To"
         ch = os.path.join(self.ToDirname.get(), self.ToFilename.get())
+        newToFileName=""
         if os.path.exists(ch):
-            for i in range(1, 1e6):
+            for i in range(1, int(1e6)):
                 if not os.path.exists(os.path.join(self.ToDirname.get(), self.ToFilename.get()+'_'+str(i))):
-                    ch = os.path.join(self.ToDirname.get(),
-                                      self.ToFilename.get()+str(i))
+                    newToFileName=self.ToFilename.get()+'_'+str(i)
                     break
-            if os.path.exists(ch):
+            if not os.path.exists(os.path.join(self.ToDirname.get(), newToFileName)):
+                self.ToFilename.set(newToFileName)
                 return '要创建的文件夹和其他文件重名,已更名为不重名的文件名'
             else:
                 return '要创建的文件夹和其他文件重名'
@@ -208,13 +209,19 @@ class DeCompressFrame(Frame):
 
     def tk_getFilename(self) -> str:
         "可视化获取文件名  -> 限定了压缩文件的后缀"
+        if self.From.get():
+            key=self.From.get()
+        else:
+            key=".\\"
         return os.path.normpath(
-            tkinter.filedialog.askopenfilename(filetypes=const.filetypes_speial))
+            tkinter.filedialog.askopenfilename(filetypes=const.filetypes_speial,initialdir=key))
 
     def tk_getDirname(self) -> str:
         "可视化获取文件夹名"
         if self.checkFrom() == None:
             key = os.path.split(self.From.get())[0]
+        elif self.ToDirname.get():
+            key=os.path.abspath(self.ToDirname.get())
         else:
             key = './/'
         return os.path.normpath(tkinter.filedialog.askdirectory(initialdir=key))+'\\'

@@ -28,7 +28,10 @@ def rar_DeCompress(From: str, To: str, password: str = 'a123'):
 
 def ReName(from1Path: str) -> str:
     "删除后缀并返回"
-    from2Path = from1Path[:-len(const.addName)]
+    # from2Path = from1Path[:-len(const.addName)]
+    splitList=from1Path.split('.')
+    splitList[-1]=splitList[-1].replace(const.addName,'')
+    from2Path='.'.join(splitList)
     os.rename(from1Path, from2Path)
     return from2Path
 

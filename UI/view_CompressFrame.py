@@ -216,7 +216,7 @@ class CompressFrame(Frame):
 
     def tk_getFilename(self) -> str:
         "可视化获取文件名"
-        return os.path.normpath(tkinter.filedialog.askopenfilename())
+        return os.path.normpath(tkinter.filedialog.askopenfilename(initialdir=".//"))
 
     def tk_getFromDirname(self) -> str:
         "可视化获取From文件夹名"

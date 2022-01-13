@@ -32,6 +32,18 @@ class InitFrame(Frame):
             row=row, column=0, rowspan=1, columnspan=4, sticky='EW', pady=5, padx=5)
 
         row += 1
+        Label(self, text="点击查看说明文档", font=('宋体', 10, 'bold')).grid(
+            row=row, sticky=W, columnspan=2)
+
+        row += 1
+        Button(self, text="查看说明文档readme", command=self.init_readme_open).grid(
+            row=row, column=0, stick=EW, pady=2)
+        
+        row += 1
+        tkinter.ttk.Separator(self, orient='horizontal').grid(
+            row=row, column=0, rowspan=1, columnspan=4, sticky='EW', pady=5, padx=5)
+
+        row += 1
         Label(self, text="文件结构", font=('宋体', 13, 'bold')
               ).grid(row=row, columnspan=5, sticky=W, pady=5)
 
@@ -122,11 +134,11 @@ class InitFrame(Frame):
                else None
                ).grid(
             row=row, column=0, stick=W, pady=2)
-        Button(self, text="预览位置", command=lambda: tkinter.filedialog.askdirectory(initialdir=const.outputPath)
+        Button(self, text="查看输出区内容", command=lambda: tkinter.filedialog.askopenfilename(initialdir=const.outputPath)
                ).grid(
             row=row, column=1, sticky=W)
 
     def init_readme_open(self):
         "init readme 并在os中打开"
         initModel.initFile_readme()
-        fileStructure.openFileInOS(const.readmePath)
+        fileStructure.openFile(const.readmePath)
