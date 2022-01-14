@@ -39,7 +39,7 @@ except:
     root.destroy()
     initRoot=main_initStructure.main_Frame()
     messagebox.showwarning(
-        title="警告",message="打开主界面遇到了问题,可以尝试通过初始化页面初始化设置来尝试解决问题\n完成初始化后请重启程序"
+        title="警告",message="打开主界面遇到了问题,可以尝试通过初始化页面初始化设置来尝试解决问题\n请点击\'初始化所有设置\'\n完成初始化后请重启程序"
         ,parent=initRoot)
     initRoot.mainloop()
     
