@@ -58,7 +58,8 @@ class DeCompress:
         to2="NonePath"
         for f in os.listdir(to1):
             every = os.path.join(to1, f)
-            if every.split('.')[-1] in  tuple(map(lambda x:x[1:]+const.addName,const.compressType)):
+            if every.split('.')[-1] in  tuple(map(lambda x:x[1:]+const.addName,const.compressType))\
+                or every.split('.')[-1] in tuple(map(lambda x:x[1:],const.compressType)):
                 print(f"unrar -{every}")
                 # 重命名
                 from2 = ReName(every)

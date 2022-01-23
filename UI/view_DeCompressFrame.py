@@ -267,8 +267,8 @@ class DeCompressFrame(Frame):
                     tkinter.messagebox.showwarning("警告", "命名不符合标准格式，可能被改动或不是本程序产生")
                 else:
                     p1, p2 = name.split()[-2:]
-                    self.password1.set(p1)
-                    self.password2.set(p2)
+                    self.password1.set(p2)
+                    self.password2.set(p1)
                     tkinter.messagebox.showinfo("提示", "更新密码成功")
 
     def retLocationDeCompressFrom(self, *args):

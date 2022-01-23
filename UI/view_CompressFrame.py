@@ -214,9 +214,13 @@ class CompressFrame(Frame):
             ret = False
         return ret
 
-    def tk_getFilename(self) -> str:
+    def tk_getFromFilename(self) -> str:
         "可视化获取文件名"
-        return os.path.normpath(tkinter.filedialog.askopenfilename(initialdir=".//"))
+        if self.checkFrom() == None:
+            key=os.path.abspath(self.From.get())
+        else:
+            key='.//'
+        return os.path.normpath(tkinter.filedialog.askopenfilename(initialdir=key))
 
     def tk_getFromDirname(self) -> str:
         "可视化获取From文件夹名"
@@ -240,7 +244,7 @@ class CompressFrame(Frame):
     def previewFromLocation(self):
         "预览from"
         if self.FromIsFile.get():
-            self.From.set(self.tk_getFilename())
+            self.From.set(self.tk_getFromFilename())
         else:
             self.From.set(self.tk_getFromDirname())
 
